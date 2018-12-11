@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".SignUp"
+                                             android:id="@+id/linearLayout"
+>
+
+
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp" android:id="@+id/text_register"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/signup_id"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold" android:textAlignment="center" tools:text="REGISTER" android:textSize="28sp"/>
+    <EditText
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_id"
+            app:layout_constraintStart_toStartOf="@+id/text_register"
+            app:layout_constraintTop_toBottomOf="@+id/text_register"
+            android:layout_marginBottom="45dp" app:layout_constraintBottom_toTopOf="@+id/signup_name"
+            android:hint="Enter email"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/signup_password"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/signup_id"
+            app:layout_constraintEnd_toEndOf="parent" android:hint="Enter Your Password"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_name"
+            app:layout_constraintTop_toBottomOf="@+id/signup_id" android:layout_marginBottom="45dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/signup_fb"
+            app:layout_constraintStart_toStartOf="parent" android:hint="Enter Your FullName"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_username"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/signup_name"
+            app:layout_constraintEnd_toEndOf="parent" android:hint="Enter username"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_fb"
+            app:layout_constraintTop_toBottomOf="@+id/signup_name" android:layout_marginBottom="45dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/signup_number"
+            app:layout_constraintStart_toStartOf="parent" android:hint="Link to your facebook"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_linkedin"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/signup_fb"
+            app:layout_constraintEnd_toEndOf="parent" android:hint="Link to linkedin(optional)"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/signup_number"
+            app:layout_constraintTop_toBottomOf="@+id/signup_fb" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_branch" app:layout_constraintStart_toStartOf="parent"
+            android:hint="Enter your phone number(optional)"/>
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="0dp" android:id="@+id/spinner_branch"
+            app:layout_constraintTop_toBottomOf="@+id/signup_number" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_year" app:layout_constraintStart_toStartOf="parent"/>
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="0dp" android:id="@+id/spinner_year"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_branch" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button_authenticate" app:layout_constraintStart_toStartOf="parent"/>
+    <Button
+            android:text="Authenticate Your Id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/button_authenticate"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_year" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:layout_width="49dp"
+            android:layout_height="43dp"
+            android:id="@+id/text_rate"
+            app:layout_constraintTop_toTopOf="@+id/signup_id" app:layout_constraintBottom_toBottomOf="@+id/signup_id"
+            app:layout_constraintStart_toEndOf="@+id/signup_id" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/spinner_deptt" android:layout_marginEnd="8dp" tools:text="@"
+            android:textSize="26sp" android:textStyle="bold" android:textAlignment="center"/>
+    <TextView
+            android:layout_width="91dp"
+            android:layout_height="43dp"
+            android:id="@+id/text_iitr"
+            app:layout_constraintTop_toTopOf="@+id/spinner_deptt" app:layout_constraintBottom_toBottomOf="@+id/spinner_deptt"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.0"
+            android:textStyle="bold" android:textAlignment="center" tools:text=".iit.ac.in" android:textSize="24sp"/>
+    <Spinner
+            android:layout_width="58dp"
+            android:layout_height="43dp"
+            android:id="@+id/spinner_deptt"
+            app:layout_constraintTop_toTopOf="@+id/text_rate" app:layout_constraintBottom_toBottomOf="@+id/text_rate"
+            app:layout_constraintEnd_toStartOf="@+id/text_iitr" app:layout_constraintVertical_bias="1.0"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

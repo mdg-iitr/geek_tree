@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">GeekTree</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="branches_array">
+        <item>Architecture And Planning</item>
+        <item>Biotechnology</item>
+        <item>Chemical Engineering</item>
+        <item>Civil Engineering</item>
+        <item>Electrical Engineering</item>
+        <item>Electronics And Communication Engineering</item>
+        <item>Computer science and Engineering</item>
+        <item>Mechanical Engineering</item>
+        <item>Production and Industrial Engineering</item>
+        <item>Polymer Science and Engineering</item>
+        <item>Metallurgicaland Mterials Engineering</item>
+        <item>Engineering Physics</item>
+        <item>Geological Technology</item>
+        <item>Geophysical Technology</item>
+        <item>Applied Mathematics</item>
+        <item>Int Msc Physics</item>
+        <item>Int Msc Chemistry</item>
+    </string-array>
+</resources>
