@@ -22,4 +22,15 @@
         <item>Int Msc Physics</item>
         <item>Int Msc Chemistry</item>
     </string-array>
+    <string name="email">Email</string>
+    <string name="name">FullName</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string-array name="year_array">
+        <item>first</item>
+        <item>second</item>
+        <item>third</item>
+        <item>fourth</item>
+        <item>fifth</item>
+    </string-array>
 </resources>
