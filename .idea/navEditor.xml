@@ -19,12 +19,12 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_destination_home_to_destination_settings">
+                            <entry key="action_destination_home_to_destination_login">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_homeScreen_to_login">
+                            <entry key="action_destination_home_to_destination_settings">
                               <value>
                                 <LayoutPositions />
                               </value>

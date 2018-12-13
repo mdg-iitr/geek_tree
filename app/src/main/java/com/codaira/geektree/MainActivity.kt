@@ -1,61 +1,42 @@
 package com.codaira.geektree
 
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import com.codaira.geektree.R.layout.fragment_home_screen
-import com.codaira.geektree.R.layout.fragment_login
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var firebaseAuth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //for toolbar
         setSupportActionBar(toolbar)
-        val navController= Navigation.findNavController(this,R.id.nav_host_fragment)
-        setupBottomNavMenu(navController)
-        setupActionBar(navController)
-        firebaseAuth = FirebaseAuth.getInstance()
+
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val firebaseAuth = FirebaseAuth.getInstance()
+
+        //changing fragments when firebase auth changed
         firebaseAuth.addAuthStateListener {
-
-            if(firebaseAuth.currentUser==null){
-                bottom_nav.visibility=View.GONE
-                navController.navigate(R.id.destination_login)
+            if (firebaseAuth.currentUser == null) {
+                navController.navigate(R.id.action_destination_home_to_destination_login)
+                bottom_nav.visibility=View.INVISIBLE
             }
-            else
-            {navController.navigate(R.id.destination_home)
-            bottom_nav.visibility=View.VISIBLE}
+            else{
+                //checking if current user has his email verified
+                    navController.navigate(R.id.destination_home)
+                bottom_nav.visibility=View.VISIBLE
+
+            }
         }
 
-    }
-    private fun setupBottomNavMenu(navController: NavController) {
-        bottom_nav?.let {
-            NavigationUI.setupWithNavController(it,navController)
+        //setting title according to fragment
+        navController.addOnDestinationChangedListener{ controller, destinationination, arguments ->
+            toolbar.title = navController.currentDestination?.label
         }
-
-    }
-    private fun setupActionBar(navController: NavController) {
-        setupActionBarWithNavController(this,navController)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate((R.menu.menu_toolbar), menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val navController = Navigation.findNavController(this, R.id.navigation_main)
-        val navigated= NavigationUI.onNavDestinationSelected(item!!,navController)
-        return navigated||super.onOptionsItemSelected(item)
     }
 }
+
+
