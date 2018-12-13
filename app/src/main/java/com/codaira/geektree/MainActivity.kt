@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -26,9 +27,14 @@ class MainActivity : AppCompatActivity() {
         setupActionBar(navController)
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseAuth.addAuthStateListener {
+
             if(firebaseAuth.currentUser==null){
-                Navigation.findNavController(this, R.id.navigation_main).navigate(R.id.destination_login)
+                bottom_nav.visibility=View.GONE
+                navController.navigate(R.id.destination_login)
             }
+            else
+            {navController.navigate(R.id.destination_home)
+            bottom_nav.visibility=View.VISIBLE}
         }
 
     }

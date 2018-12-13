@@ -2,10 +2,7 @@ package com.codaira.geektree
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -26,6 +23,15 @@ import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 class SignUp : Fragment() {
 
+    val mAuth = FirebaseAuth.getInstance()
+    private var mDatabase = FirebaseDatabase.getInstance().getReference("email")
+    private var name: String? = null
+    private var password: String? = null
+    private var email: String? = null
+    private var phoneNumber: String? = null
+    private var username: String? = null
+    private var fb: String? = null
+    private var linkedin: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,95 +46,109 @@ class SignUp : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
-        val spinnerbranch:Spinner=view.findViewById(R.id.spinner_branch)
-        spinnerbranch.adapter = ArrayAdapter(activity, R.layout.fragment_sign_up,resources.getStringArray(R.array.branches_array))as SpinnerAdapter?
-        var branch:String?=null
-        spinnerbranch.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+        var spinnerBranchArray: Array<String> = arrayOf(
+            "Architecture And Planning",
+            "Biotechnology",
+            "Chemical Engineering",
+            "Civil Engineering",
+            "Electrical Engineering",
+            "Electronics And Communication Engineering",
+            "Computer science and Engineering",
+            "Mechanical Engineering",
+            "Production and Industrial Engineering",
+            "Polymer Science and Engineering",
+            "Metallurgical and Materials Engineering",
+            "Engineering Physics",
+            "Geological Technology",
+            "Geophysical Technology",
+            "Applied Mathematics",
+            "Int Msc Physics",
+            "Int Msc Chemistry"
+        )
+        val spinnerbranch = ArrayAdapter<String>(
+            activity as Context, android.R.layout.simple_spinner_item, spinnerBranchArray
+        ) //selected item will look like a spinner set from XML
+        spinnerbranch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner_branch.setAdapter(spinnerbranch)
+        var branch: String? = null
+        spinner_branch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //do nothing
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                branch=parent?.getItemIdAtPosition(position).toString()
+                branch = parent?.getItemIdAtPosition(position).toString()
 
             }
         }
 
-        val spinneryear:Spinner=view.findViewById(R.id.spinner_year)
-        spinneryear.adapter = ArrayAdapter(activity, R.layout.fragment_sign_up,resources.getStringArray(R.array.year_array))as SpinnerAdapter?
-        var year:String?=null
-        spinneryear.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+        var spinnerYearArray: Array<String> = arrayOf("First", "Second", "Third", "Fourth", "Fifth")
+        val spinneryear = ArrayAdapter<String>(
+            activity as Context, android.R.layout.simple_spinner_item, spinnerYearArray
+        ) //selected item will look like a spinner set from XML
+        spinneryear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner_year.setAdapter(spinneryear)
+
+        var year: String? = null
+        spinner_year.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //do nothing
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                year=parent?.getItemIdAtPosition(position).toString()
+                year = parent?.getItemIdAtPosition(position).toString()
 
             }
         }
-        var Name =view.findViewById<View>(R.id.signup_name) as EditText
-        var Email=view.findViewById<View>(R.id.signup_id)as EditText
-        var Password=view.findViewById<View>(R.id.signup_password)as EditText
-        var phoneNumber=view.findViewById<View>(R.id.signup_number)as EditText
-        var username=view.findViewById<View>(R.id.signup_username)as EditText
-        var btnauth=view.findViewById<View>(R.id.button_signup)as Button
-        var mDatabase:FirebaseDatabase= FirebaseDatabase.getInstance()
-        var mDatabaseReference:DatabaseReference=mDatabase!!.reference!!.child("Users")
-        var mAuth:FirebaseAuth= FirebaseAuth.getInstance()
+
         val builder = AlertDialog.Builder(activity)
-        var pbar:View= layoutInflater.inflate(R.layout.progressbar,null)
+        var pbar: View = layoutInflater.inflate(R.layout.progressbar, null)
         builder.setView(pbar)
-        val dialog=builder.create()
-        var TAG="SignUp"
+        val dialog = builder.create()
 
-        btnauth.setOnClickListener {
-            var name=Name.text.toString()
-            var id=Email.text.toString()
-            var password=Password.text.toString()
+        name = signup_name.toString()
+        email = signup_id.toString()
+        password = signup_password.toString()
+        fb = signup_fb.toString()
+        linkedin = signup_linkedin.toString()
+        username = signup_username.toString()
 
-
-            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(id) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(year) && !TextUtils.isEmpty(branch)) {
-             dialog.show()
-            } else {
-                Toast.makeText( activity,"Enter all details", Toast.LENGTH_SHORT).show()
-            }
-
-            mAuth!!.createUserWithEmailAndPassword(id!!, password!!).addOnCompleteListener(activity!!) {task ->dialog.dismiss()
+        button_authenticate.setOnClickListener {
+            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(
+                    year
+                ) && !TextUtils.isEmpty(branch) && !TextUtils.isEmpty(fb) && !TextUtils.isEmpty(username)
+            ) {
+                dialog.show()
+                mAuth!!.createUserWithEmailAndPassword(email!!, password!!).addOnCompleteListener(activity!!) { task ->
+                    dialog.dismiss()
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "createUserWithEmail:success")
-                        val userId = mAuth!!.currentUser!!.uid
-                        //Verify Email
 
-                            val mUser = mAuth!!.currentUser;
-                            mUser!!.sendEmailVerification()
-                                .addOnCompleteListener(Activity()) { task ->
-                                    if (task.isSuccessful) {
-                                        Toast.makeText(activity,
-                                            "Verification email sent to " + mUser.getEmail(),LENGTH_SHORT).show()
-                                    } else {
-                                        Log.e(TAG, "sendEmailVerification", task.exception)
-                                        Toast.makeText(activity,
-                                            "Failed to send verification email.",LENGTH_SHORT).show()
-                                    }
+                        val mUser = mAuth!!.currentUser
+                        mUser!!.sendEmailVerification()
+                            .addOnCompleteListener(Activity()) { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(
+                                        activity,
+                                        "Verification email sent to " + mUser.email!!,
+                                        LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    Toast.makeText(activity, "Failed to send verification email.", LENGTH_SHORT).show()
                                 }
-
-
-                        //update user profile information
-                        val currentUserDb = mDatabaseReference!!.child(userId)
-                        currentUserDb.child("name").setValue(name)
-                        Navigation.findNavController(it).navigate(action_signUp_to_interests)
+                            }
+                        Navigation.findNavController(fragment_sign_up as View).navigate(action_signUp_to_interests)
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
                         Toast.makeText(activity, "Authentication failed.", Toast.LENGTH_LONG).show()
                     }
                 }
+            } else {
+                Toast.makeText(activity, "Enter all details", Toast.LENGTH_SHORT).show()
+            }
+
 
         }
-
-
     }
-
 }
+
