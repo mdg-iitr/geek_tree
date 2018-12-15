@@ -1,16 +1,17 @@
 package com.codaira.geektree
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.codaira.geektree.R.id.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 
+val mAuth = FirebaseAuth.getInstance()
 class Login : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,4 +22,37 @@ class Login : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        proceedToSignUpTextView_SignInFragment.setOnClickListener {
+            Navigation.findNavController(it).navigate(action_login_to_signUp)
+        }
+        signInButton_SignInFragment.setOnClickListener {
+            loginUser()
+        }
+
+    }
+
+    private fun loginUser() {
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(
+            editEmail_signInFragment.text.toString(),
+            editPassword_signInFragment.text.toString()
+        ).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(activity, "Successful SignIn", Toast.LENGTH_SHORT).show() //to home through main activity
+            } else {
+                textView_SignInFragment.text = "Enter Correct Details"
+            }
+
+        }
+
+    }
+
 }
+
+
+
+
