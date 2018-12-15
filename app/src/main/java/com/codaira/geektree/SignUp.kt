@@ -82,7 +82,7 @@ class SignUp : Fragment() {
             if (!isEmpty(name) && !isEmpty(email) && !isEmpty(year) && !isEmpty(branch) && !isEmpty(username) &&password.length>=6){
                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                     if(it.isSuccessful){
-                        val user = User(email,password,username,name,phoneNumber,fb,linkedin)
+                        val user = User(email,password,username,name,phoneNumber,fb,linkedin,branch,year)
                         FirebaseDatabase.getInstance().reference.child("User").child(mAuth.currentUser?.uid.toString()).setValue(user)
                         mAuth.signInWithEmailAndPassword(email, password) //Note : Navigation will automatically be handled by main activity
                     }
