@@ -16,16 +16,25 @@
     </fragment>
     <fragment android:id="@+id/destination_home" android:name="com.codaira.geektree.HomeScreen"
               android:label="Home" tools:layout="@layout/fragment_home_screen">
-        <action android:id="@+id/action_destination_home_to_destination_settings"
-                app:destination="@id/destination_settings"/>
         <action android:id="@+id/action_destination_home_to_destination_login" app:destination="@id/destination_login"
                 app:popUpTo="@+id/destination_home"
                 app:popUpToInclusive="true"/>
+        <action android:id="@+id/action_destination_home_to_destination_addPost2"
+                app:destination="@id/destination_addPost"/>
+        <action android:id="@+id/action_destination_home_to_destination_profile2"
+                app:destination="@id/destination_profile"/>
+        <action android:id="@+id/action_destination_home_to_destination_pinnedPosts2"
+                app:destination="@id/destination_pinnedPosts"/>
     </fragment>
     <fragment android:id="@+id/destination_interests" android:name="com.codaira.geektree.Interests"
               android:label="Choose Your Intrests" tools:layout="@layout/fragment_interests">
         <action android:id="@+id/action_interests_to_homeScreen" app:destination="@id/destination_home"/>
     </fragment>
-    <fragment android:id="@+id/destination_settings" android:name="com.codaira.geektree.fragment_settings"
-              tools:layout="@layout/fragment_fragment_settings"/>
+    <fragment android:id="@+id/destination_profile" android:name="com.codaira.geektree.destination_profile"
+              android:label="Profile" tools:layout="@layout/fragment_destination_profile"/>
+    <fragment android:id="@+id/destination_addPost" android:name="com.codaira.geektree.destination_addPost"
+              android:label="Add Post" tools:layout="@layout/fragment_destination_add_post"/>
+    <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.destination_pinnedPosts"
+              android:label="Pinned Posts"
+              tools:layout="@layout/fragment_destination_pinned_posts"/>
 </navigation>

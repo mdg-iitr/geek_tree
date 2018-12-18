@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:id="@+id/destination_home"
             android:icon="@drawable/ic_baseline_home_24px"
             android:title="Home" />
     <item
             android:icon= "@drawable/ic_baseline_playlist_add_24px"
-            android:title="Add Post" />
+            android:title="Add Post"
+            android:id="@+id/destination_addPost"/>
 
     <item
             android:icon= "@drawable/ic_baseline_favorite_border_24px"
-            android:title="Pinned Post" />
+            android:title="Pinned Post"
+            android:id="@+id/destination_pinnedPosts"/>
     <item
             android:icon= "@drawable/ic_baseline_person_24px"
-            android:title="Profile" />
+            android:title="Profile"
+            android:id="@+id/destination_profile"/>
 
 </menu>

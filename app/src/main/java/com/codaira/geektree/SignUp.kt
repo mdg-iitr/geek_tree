@@ -87,7 +87,7 @@ class SignUp : Fragment() {
                         mAuth.signInWithEmailAndPassword(email, password) //Note : Navigation will automatically be handled by main activity
                     }
                     else{
-                        Toast.makeText(activity,"Couldn't login please try again.",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity,"Couldn't SignUp please try again.",Toast.LENGTH_SHORT).show()
                     }
                 }
             }
