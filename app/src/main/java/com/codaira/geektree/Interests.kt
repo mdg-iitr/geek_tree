@@ -6,11 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.codaira.geektree.model.interestsClass
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.codaira.geektree.model.Interests
+import com.codaira.geektree.model.all_interests_adapter
+import com.codaira.geektree.model.user_interests
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_destination_add_post.*
 import kotlinx.android.synthetic.main.fragment_interests.*
+import kotlinx.android.synthetic.main.interests_layout.*
 
 class Interests : Fragment() {
     lateinit var firebasedatabase: DatabaseReference
@@ -28,34 +34,18 @@ class Interests : Fragment() {
         firebasedatabase = FirebaseDatabase.getInstance().reference.child("User")
             .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
             .child("interests")
-        var list = arrayListOf<String>()
-        checkBox_interest1.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest1.text.toString())
-        }
-        checkBox_interest2.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest2.text.toString())
-        }
-        checkBox_interest3.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest3.text.toString())
-        }
-        checkBox_interest4.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest4.text.toString())
-        }
-        checkBox_interest5.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest5.text.toString())
-        }
-        checkBox_interest6.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest6.text.toString())
-        }
-        checkBox_interest7.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest7.text.toString())
-        }
-        checkBox_interest8.setOnCheckedChangeListener { buttonView, isChecked ->
-            list.add(checkBox_interest8.text.toString())
-        }
+
+        addpost_recycler?.layoutManager=LinearLayoutManager(activity, RecyclerView.VERTICAL,false)
+        addpost_recycler?.adapter=all_interests_adapter(Interests.allInterestsArray)
+
+
+     var list = arrayListOf<String>()
+         interest_of_user?.setOnCheckedChangeListener { buttonView, isChecked ->
+            list.add(interest_of_user.text.toString())
+       }
 
             button_save_interests.setOnClickListener {
-                interestsClass(list)
+                user_interests(list)
                 list.forEach {
                     val key = firebasedatabase.push().key
                     var save = firebasedatabase.child(key!!).setValue(it)

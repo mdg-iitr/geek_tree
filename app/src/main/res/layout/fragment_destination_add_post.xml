@@ -26,14 +26,14 @@
                           android:orientation="vertical">
                 <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="55dp"
                 android:id="@+id/addpost_recycler"/>
             </LinearLayout>
         </ScrollView>
 
         <ImageButton
                 android:layout_width="384dp"
-                android:layout_height="220dp" android:id="@+id/button_postimage_post"
+                android:layout_height="253dp" android:id="@+id/button_postimage_post"
                 android:layout_gravity="center"/>
         <TextView
                 android:layout_width="203dp"

@@ -14,19 +14,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.R.id.interest_of_user
 import com.codaira.geektree.model.Posts
-import com.codaira.geektree.model.interestsClass
+import com.codaira.geektree.model.user_interests
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_destination_add_post.*
-import kotlinx.android.synthetic.main.interests_layout.view.*
-import kotlinx.android.synthetic.main.post_layout.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -63,9 +58,9 @@ class destination_addPost : Fragment() {
                 LinearLayoutManager(activity, RecyclerView.VERTICAL, false) // adds recycler in vertical orientation
         val query = FirebaseDatabase.getInstance().reference.child("User").child(FirebaseAuth.getInstance().currentUser?.uid.toString()).child("interests")
         val options =
-            FirebaseRecyclerOptions.Builder<interestsClass>().setQuery(query, interestsClass::class.java).setLifecycleOwner(activity)
+            FirebaseRecyclerOptions.Builder<user_interests>().setQuery(query, user_interests::class.java).setLifecycleOwner(activity)
                 .build()
-        val adapter = object : FirebaseRecyclerAdapter<interestsClass, InterestHolder>(options) {
+        val adapter = object : FirebaseRecyclerAdapter<user_interests, InterestHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestHolder {
                 return  InterestHolder(
                     LayoutInflater.from(parent.context).inflate(
@@ -76,7 +71,7 @@ class destination_addPost : Fragment() {
                 )
             }
 
-            override fun onBindViewHolder(p0:InterestHolder, p1: Int, p2: interestsClass) { //binds data to objects
+            override fun onBindViewHolder(p0:InterestHolder, p1: Int, p2: user_interests) { //binds data to objects
                 p0.bind(p2)
             }
         }
@@ -90,8 +85,8 @@ class destination_addPost : Fragment() {
         }
 
     }
-    class InterestHolder(val customView: View, var interets:interestsClass? = null) : RecyclerView.ViewHolder(customView) {
-        fun bind(interets: interestsClass?) {
+    class InterestHolder(val customView: View, var interets:user_interests? = null) : RecyclerView.ViewHolder(customView) {
+        fun bind(interets: user_interests?) {
             //customView.interest_of_user?.text=interets!!.list[]
         }
     }

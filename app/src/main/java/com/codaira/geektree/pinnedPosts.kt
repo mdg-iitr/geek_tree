@@ -44,3 +44,36 @@ class destination_pinnedPosts : Fragment() {
     }
 }
 
+//     <CheckBox
+//                android:text="Android Development"
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest1" android:layout_weight="1"/>
+//        <CheckBox
+//                android:text="Machine Learning"
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest2" android:layout_weight="1"/>
+//        <CheckBox
+//                android:text="Augmented Reality"
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest3" android:layout_weight="1"/>
+//        <CheckBox
+//                android:text="Virtual Reality"
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest4" android:layout_weight="1"/>
+//        <CheckBox
+//                android:text="Entrepreneurship"
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest5" android:layout_weight="1"/>
+//        <CheckBox
+//                android:text="Web Development"
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest6" android:layout_weight="1"/>
+//        <CheckBox
+//                android:text="Designing"
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest7" android:layout_weight="1"/>
+//        <CheckBox
+//                android:layout_width="414dp"
+//                android:layout_height="58dp" android:id="@+id/checkBox_interest8" android:layout_weight="1"
+//                android:text="Photography"/>
+
