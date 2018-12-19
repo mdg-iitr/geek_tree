@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.model.Interests
-import com.codaira.geektree.model.all_interests_adapter
+import com.codaira.geektree.model.All_Interests_Recycler_Adapter
 import com.codaira.geektree.model.user_interests
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -35,28 +35,28 @@ class Interests : Fragment() {
             .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
             .child("interests")
 
-        addpost_recycler?.layoutManager=LinearLayoutManager(activity, RecyclerView.VERTICAL,false)
-        addpost_recycler?.adapter=all_interests_adapter(Interests.allInterestsArray)
+        interest_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        interest_recycler?.adapter = All_Interests_Recycler_Adapter(Interests.allInterestsArray)
 
-
-     var list = arrayListOf<String>()
-         interest_of_user?.setOnCheckedChangeListener { buttonView, isChecked ->
+        var list = arrayListOf<String>()
+        interest_of_user?.setOnCheckedChangeListener { buttonView, isChecked ->
+            Toast.makeText(activity, interest_of_user.text.toString(), Toast.LENGTH_SHORT).show()
             list.add(interest_of_user.text.toString())
-       }
+        }
 
-            button_save_interests.setOnClickListener {
-                user_interests(list)
-                list.forEach {
-                    val key = firebasedatabase.push().key
-                    var save = firebasedatabase.child(key!!).setValue(it)
-                    save.addOnCompleteListener {
-                        Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
-                    }.addOnFailureListener {
-                        Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
+        button_save_interests.setOnClickListener {
+            user_interests(list)
+            list.forEach {
+                val key = firebasedatabase.push().key
+                var save = firebasedatabase.child(key!!).setValue(it)
+                save.addOnCompleteListener {
+                    Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
+                }.addOnFailureListener {
+                    Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
 
-                    }
                 }
             }
-
         }
+
     }
+}

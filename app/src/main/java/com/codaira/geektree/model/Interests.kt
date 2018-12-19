@@ -1,7 +1,12 @@
 package com.codaira.geektree.model
 
-data class Interests(var userInterests:String? = null){
+data class Interests(var userInterests:ArrayList<String>? = null){
     companion object{
-        var allInterestsArray= listOf<String>("Photography", "Android Development","Web development","Designing","Machine Learning","Virtual Reality")
+        var allInterestsArray= arrayListOf<String>("Photography",
+            "Android Development",
+            "Web development",
+            "Designing",
+            "Machine Learning",
+            "Virtual Reality")
     }
 }
