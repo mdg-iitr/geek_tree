@@ -31,15 +31,12 @@ class InterestsFragment : Fragment() {
         firebasedatabase = FirebaseDatabase.getInstance().reference.child("User")
             .child(FirebaseAuth.getInstance().currentUser?.uid.toString())
             .child("interests")
-
+        //setting recycler
         interest_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        interest_recycler?.adapter =
-                AllInterestsRecyclerAdapter(Interests.allInterestsArray)
+        interest_recycler?.adapter = AllInterestsRecyclerAdapter(Interests.allInterestsArray)
 
 
         button_save_interests.setOnClickListener {
-            Toast.makeText(activity, "sfd", Toast.LENGTH_SHORT).show()
-
             var save = firebasedatabase.setValue(Interests.userInterests)
             save.addOnCompleteListener {
                 Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()

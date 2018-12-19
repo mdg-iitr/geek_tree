@@ -16,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Enter registered email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"/>
 
         <EditText
                 android:id="@+id/editPassword_signInFragment"
@@ -26,14 +26,14 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
                 android:hint="Enter password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"/>
 
         <Button
                 android:id="@+id/signInButton_SignInFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="SignIn" />
+                android:text="SignIn"/>
 
         <TextView
                 android:id="@+id/textView_SignInFragment"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:gravity="center"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@android:color/holo_red_dark"/>
 
         <TextView
                 android:id="@+id/proceedToSignUpTextView_SignInFragment"
@@ -51,7 +51,7 @@
                 android:layout_marginBottom="100dp"
                 android:gravity="center"
                 android:text="Don't have an account?\nClick here to create one."
-                android:textColor="@color/link_color" />
+                android:textColor="@color/link_color"/>
     </LinearLayout>
 
 </ScrollView>

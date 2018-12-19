@@ -18,10 +18,9 @@ import com.google.firebase.database.*
 import android.widget.TabHost
 
 
-
 class destination_profile : Fragment() {
     lateinit var firebaseUser: String
-    lateinit var databaseref:DatabaseReference
+    lateinit var databaseref: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,20 +29,24 @@ class destination_profile : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_destination_profile, container, false)
         val binding = DataBindingUtil.bind<FragmentDestinationProfileBinding>(view)
-        firebaseUser=FirebaseAuth.getInstance().currentUser?.uid.toString()
-        databaseref=FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser)
-        databaseref.addValueEventListener(object:ValueEventListener{
+        firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser)
+        databaseref.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(activity,"Data not found",Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Data not found", Toast.LENGTH_LONG).show()
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val user:User=p0.getValue(User::class.java)!!
-                binding?.user=user
+                val user: User = p0.getValue(User::class.java)!!
+                binding?.user = user
             }
         })
         return view
     }
+
+
+  //todo: make it editable, make logout
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,8 +64,7 @@ class destination_profile : Fragment() {
         spec.setContent(R.id.Interests)
         spec.setIndicator("InterestsFragment")
         host.addTab(spec)
-        //To show interests using recycler
-
+        //todo:To show interests using recycler
 
 
     }

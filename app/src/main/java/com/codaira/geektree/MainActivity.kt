@@ -28,12 +28,11 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth.addAuthStateListener {
             if (firebaseAuth.currentUser == null) {
                 navController.navigate(R.id.action_destination_home_to_destination_login)
-                bottom_nav.visibility=View.INVISIBLE
-            }
-            else{
+                bottom_nav.visibility = View.INVISIBLE
+            } else {
                 //checking if current user has his email verified
-                navController.navigate(R.id.destination_interests)
-                bottom_nav.visibility=View.VISIBLE
+                navController.navigate(R.id.destination_home)
+                bottom_nav.visibility = View.VISIBLE
                 bottom_nav?.let {
                     NavigationUI.setupWithNavController(it, navController)
                 }
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //setting title according to fragment
-        navController.addOnDestinationChangedListener{ controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
             toolbar.title = navController.currentDestination?.label
         }
 

@@ -49,7 +49,7 @@ class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
             Interests.userInterests?.remove(s)
         }
 
-        fun addItemToList( s : String) {
+        fun addItemToList(s: String) {
             Interests.userInterests?.add(s)
         }
 
