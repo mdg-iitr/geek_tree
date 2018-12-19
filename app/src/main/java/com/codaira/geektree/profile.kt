@@ -15,6 +15,9 @@ import com.codaira.geektree.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import android.widget.TabHost
+
+
 
 
 class destination_profile : Fragment() {
@@ -41,6 +44,25 @@ class destination_profile : Fragment() {
             }
         })
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val host = view.findViewById(R.id.tabhost) as TabHost
+        host.setup()
+
+        //Tab 1
+        var spec: TabHost.TabSpec = host.newTabSpec("Details")
+        spec.setContent(R.id.details)
+        spec.setIndicator("Details")
+        host.addTab(spec)
+
+        //Tab 2
+        spec = host.newTabSpec("Interests")
+        spec.setContent(R.id.Interests)
+        spec.setIndicator("Interests")
+        host.addTab(spec)
+
     }
 }
 

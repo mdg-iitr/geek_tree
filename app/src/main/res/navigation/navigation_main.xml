@@ -27,7 +27,7 @@
                 app:destination="@id/destination_pinnedPosts"/>
     </fragment>
     <fragment android:id="@+id/destination_interests" android:name="com.codaira.geektree.Interests"
-              android:label="Choose Your Intrests" tools:layout="@layout/fragment_interests">
+              android:label="Choose Your Interests" tools:layout="@layout/fragment_interests">
         <action android:id="@+id/action_interests_to_homeScreen" app:destination="@id/destination_home"/>
     </fragment>
     <fragment android:id="@+id/destination_profile" android:name="com.codaira.geektree.destination_profile"

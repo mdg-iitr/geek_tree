@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 //checking if current user has his email verified
-                navController.navigate(R.id.destination_home)
+                navController.navigate(R.id.destination_interests)
                 bottom_nav.visibility=View.VISIBLE
                 bottom_nav?.let {
                     NavigationUI.setupWithNavController(it, navController)
