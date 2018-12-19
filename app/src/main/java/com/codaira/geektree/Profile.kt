@@ -58,9 +58,9 @@ class destination_profile : Fragment() {
         host.addTab(spec)
 
         //Tab 2
-        spec = host.newTabSpec("Interests")
+        spec = host.newTabSpec("InterestsFragment")
         spec.setContent(R.id.Interests)
-        spec.setIndicator("Interests")
+        spec.setIndicator("InterestsFragment")
         host.addTab(spec)
 
     }
