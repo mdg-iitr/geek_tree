@@ -1,4 +1,4 @@
-package com.codaira.geektree.model
+package com.codaira.geektree.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,21 +6,22 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
+import com.codaira.geektree.model.Posts
 
-class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
-    RecyclerView.Adapter<AllInterestsRecyclerAdapter.ViewHolder>() {
+class PostInterestAdapter(var postinterestslist: ArrayList<String>) :
+    RecyclerView.Adapter<PostInterestAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllInterestsRecyclerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.interests_layout, parent, false)
         return ViewHolder(v)
     }
 
     override fun getItemCount(): Int {
-        return interestslist.size
+        return postinterestslist.size
     }
 
-    override fun onBindViewHolder(holder: AllInterestsRecyclerAdapter.ViewHolder, position: Int) {
-        val interest: String = interestslist[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val interest: String = postinterestslist[position]
         holder.setInterestString(interest)
     }
 
@@ -45,13 +46,12 @@ class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
         }
 
         fun removeItemFromList(s: String) {
-            Interests.userInterests?.remove(s)
+            Posts.postInterest?.remove(s)
         }
 
-        fun addItemToList( s : String) {
-            Interests.userInterests?.add(s)
+        fun addItemToList(s: String) {
+            Posts.postInterest?.add(s)
         }
 
     }
-
 }

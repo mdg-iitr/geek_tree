@@ -19,7 +19,6 @@ import android.widget.TabHost
 
 
 
-
 class destination_profile : Fragment() {
     lateinit var firebaseUser: String
     lateinit var databaseref:DatabaseReference
@@ -62,6 +61,9 @@ class destination_profile : Fragment() {
         spec.setContent(R.id.Interests)
         spec.setIndicator("InterestsFragment")
         host.addTab(spec)
+        //To show interests using recycler
+
+
 
     }
 }
