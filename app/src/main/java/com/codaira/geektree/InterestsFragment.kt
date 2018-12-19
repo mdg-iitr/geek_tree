@@ -37,25 +37,25 @@ class InterestsFragment : Fragment() {
         interest_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         interest_recycler?.adapter = AllInterestsRecyclerAdapter(Interests.allInterestsArray)
 
-        var list = arrayListOf<String>()
-        interest_of_user?.setOnCheckedChangeListener { buttonView, isChecked ->
-            Toast.makeText(activity, interest_of_user.text.toString(), Toast.LENGTH_SHORT).show()
-            list.add(interest_of_user.text.toString())
-        }
 
+
+//        button_save_interests.setOnClickListener {
+//            user_interests(list)
+//            list.forEach {
+//                val key = firebasedatabase.push().key
+//                var save = firebasedatabase.child(key!!).setValue(it)
+//                save.addOnCompleteListener {
+//                    Toast.makeText(activity, "InterestsFragment have been saved", Toast.LENGTH_LONG).show()
+//                }.addOnFailureListener {
+//                    Toast.makeText(activity, "InterestsFragment have NOT been saved", Toast.LENGTH_LONG).show()
+//
+//                }
+//            }
+//        }
         button_save_interests.setOnClickListener {
-            user_interests(list)
-            list.forEach {
-                val key = firebasedatabase.push().key
-                var save = firebasedatabase.child(key!!).setValue(it)
-                save.addOnCompleteListener {
-                    Toast.makeText(activity, "InterestsFragment have been saved", Toast.LENGTH_LONG).show()
-                }.addOnFailureListener {
-                    Toast.makeText(activity, "InterestsFragment have NOT been saved", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity,"sfd",Toast.LENGTH_SHORT).show()
 
-                }
-            }
+            FirebaseDatabase.getInstance().reference.child("KT").setValue(Interests.userInterests)
         }
-
     }
 }

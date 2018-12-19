@@ -1,4 +1,5 @@
 package com.codaira.geektree.model
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import com.codaira.geektree.R
 
 class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
     RecyclerView.Adapter<AllInterestsRecyclerAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllInterestsRecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.interests_layout, parent, false)
         return ViewHolder(v)
@@ -20,35 +22,34 @@ class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
     override fun onBindViewHolder(holder: AllInterestsRecyclerAdapter.ViewHolder, position: Int) {
         val interest: String = interestslist[position]
         holder.setInterestString(interest)
-
     }
 
     class ViewHolder(val itemview: View) : RecyclerView.ViewHolder(itemview) {
-        val interest: String = Interests.allInterestsArray[adapterPosition]
-        var list= arrayListOf<String>()
         lateinit var a: CheckBox
 
         fun setInterestString(interest: String) {
-            a = itemview.findViewById<CheckBox>(R.id.interest_of_user)
             a.setText(interest)
         }
 
         init {
+            a = itemview.findViewById<CheckBox>(R.id.interest_of_user)
+
             itemview.setOnClickListener { a.isChecked = !a.isChecked }
             a.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    addItemToList()
+                    addItemToList(a.text.toString())
                 } else {
-                     removeItemFromList()
+                    removeItemFromList(a.text.toString())
                 }
             }
         }
 
-        fun removeItemFromList() {
-         list.remove(interest)
+        fun removeItemFromList(s: String) {
+            Interests.userInterests?.remove(s)
         }
-        fun addItemToList() {
-            list.add(interest)
+
+        fun addItemToList( s : String) {
+            Interests.userInterests?.add(s)
         }
 
     }
