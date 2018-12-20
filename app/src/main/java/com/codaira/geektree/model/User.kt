@@ -9,6 +9,7 @@ class User(
     var fb: String? = "",
     var linkedin: String? = "",
     var branch: String? = "",
-    var year: String = ""
+    var year: String = "",
+    var interests: Interests? = null
 )
 

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.model.Interests
 import com.codaira.geektree.Adapters.AllInterestsRecyclerAdapter
-import com.codaira.geektree.model.InterestList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -40,10 +39,10 @@ class InterestsFragment : Fragment() {
 
         button_save_interests.setOnClickListener {
             val nav=it
-            if (!Interests.userInterests.isEmpty()) {
-                val list = InterestList(Interests.userInterests)
+            if (!AllInterestsRecyclerAdapter.temporaryInterestList.isEmpty()) {
+                val interests = Interests(AllInterestsRecyclerAdapter.temporaryInterestList)
 
-                val save = firebasedatabase.setValue(list)
+                val save = firebasedatabase.setValue(interests)
 
                 save.addOnCompleteListener {
                     Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()

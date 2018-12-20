@@ -11,6 +11,10 @@ import com.codaira.geektree.model.Interests
 class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
     RecyclerView.Adapter<AllInterestsRecyclerAdapter.ViewHolder>() {
 
+    companion object {
+        var temporaryInterestList = ArrayList<String>()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.interests_layout, parent, false)
         return ViewHolder(v)
@@ -46,11 +50,11 @@ class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
         }
 
         fun removeItemFromList(s: String) {
-            Interests.userInterests?.remove(s)
+            AllInterestsRecyclerAdapter.temporaryInterestList.remove(s)
         }
 
         fun addItemToList(s: String) {
-            Interests.userInterests?.add(s)
+            AllInterestsRecyclerAdapter.temporaryInterestList.add(s)
         }
 
     }

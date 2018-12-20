@@ -35,7 +35,7 @@ class HomeScreen : Fragment() {
         view.findViewById<RecyclerView>(R.id.homescreen_recycler).layoutManager =
                 LinearLayoutManager(activity, RecyclerView.VERTICAL, false) // adds recycler in vertical orientation
 
-        Interests.userInterests.forEach {
+        MainActivity.user?.interests?.interests?.forEach {
 
             val query = FirebaseDatabase.getInstance().reference.orderByChild("Interests").equalTo(it) //to check if interest of a user matches the interest a post is under
             val options =

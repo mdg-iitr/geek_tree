@@ -49,7 +49,7 @@ class AddPostFragment : Fragment() {
         //To show interests using recycler-so the interests of previous post are not over written
         button_addinterest_post.setOnClickListener {
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-            addpost_recycler?.adapter = PostInterestAdapter(com.codaira.geektree.model.Interests.userInterests)
+            addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
         }
 
         button_postimage_post.setOnClickListener {

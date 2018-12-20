@@ -27,16 +27,8 @@ class destination_profile : Fragment() {
         val binding = DataBindingUtil.bind<FragmentDestinationProfileBinding>(view)
         firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
         databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser)
-        databaseref.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(activity, "Data not found", Toast.LENGTH_LONG).show()
-            }
 
-            override fun onDataChange(p0: DataSnapshot) {
-                val user: User = p0.getValue(User::class.java)!!
-                binding?.user = user
-            }
-        })
+        binding?.user = MainActivity.user
         return view
     }
 
