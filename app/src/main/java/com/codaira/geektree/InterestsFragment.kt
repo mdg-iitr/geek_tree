@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.model.Interests
@@ -37,11 +38,20 @@ class InterestsFragment : Fragment() {
 
 
         button_save_interests.setOnClickListener {
-            var save = firebasedatabase.setValue(Interests.userInterests)
-            save.addOnCompleteListener {
-                Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
-            }.addOnFailureListener {
-                Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
+            var nav=it
+            if (!Interests.userInterests.isEmpty()) {
+                var save = firebasedatabase.setValue(Interests.userInterests)
+                save.addOnCompleteListener {
+                    Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
+                    Navigation.findNavController(nav).navigate(R.id.action_interests_to_homeScreen)
+
+                }.addOnFailureListener {
+                    Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
+                }
+            }
+            else{
+                Toast.makeText(activity, "Please enter your interests", Toast.LENGTH_LONG).show()
+
             }
         }
     }

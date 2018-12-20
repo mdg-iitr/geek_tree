@@ -88,6 +88,7 @@ class SignUp : Fragment() {
                             .setValue(user)
                         FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
 
+
                     } else {
                         Toast.makeText(activity, "Couldn't SignUp please try again.", Toast.LENGTH_SHORT).show()
                     }

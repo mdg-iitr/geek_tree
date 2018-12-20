@@ -8,8 +8,10 @@ import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.codaira.geektree.model.Interests
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,11 +32,15 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.action_destination_home_to_destination_login)
                 bottom_nav.visibility = View.INVISIBLE
             } else {
-                //checking if current user has his email verified
-                navController.navigate(R.id.destination_home)
-                bottom_nav.visibility = View.VISIBLE
-                bottom_nav?.let {
-                    NavigationUI.setupWithNavController(it, navController)
+                if (FirebaseDatabase.getInstance().reference.child("User").child(FirebaseAuth.getInstance().currentUser?.uid.toString()).child("interests").equals("")){
+                    navController.navigate(R.id.destination_interests)
+                }
+                else {
+                    navController.navigate(R.id.destination_home)
+                    bottom_nav.visibility = View.VISIBLE
+                    bottom_nav?.let {
+                        NavigationUI.setupWithNavController(it, navController)
+                    }
                 }
 
             }
