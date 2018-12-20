@@ -1,10 +1,10 @@
 package com.codaira.geektree.model
 
 class User(
+    var email: String? = "",
+    var password: String? = "",
     var username: String? = "",
     var name: String? = "",
-    var password: String? = "",
-    var email: String? = "",
     var phoneNumber: String? = "",
     var fb: String? = "",
     var linkedin: String? = "",

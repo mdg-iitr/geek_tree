@@ -77,21 +77,18 @@ class destination_addPost : Fragment() {
             edit_posttext_post.text.toString(),
             SimpleDateFormat("dd: MM : yyyy").format(Calendar.getInstance().time),
             SimpleDateFormat("HH:mm").format(Calendar.getInstance().time),
-            FirebaseAuth.getInstance().currentUser?.email, url
+            FirebaseAuth.getInstance().currentUser?.email, url,Posts.postInterest
         )
-        FirebaseDatabase.getInstance().reference.child("posts").push().child("interests")
-            .setValue(Posts.postInterest)
 
         //database with all posts and (users:not for now) of an interest together
         Posts.postInterest.forEach {
 
-            FirebaseDatabase.getInstance().reference.child("Interests")
-                .child(it).child("post").push().setValue(post)
+            FirebaseDatabase.getInstance().reference.child("Interests").child(it).child("post").push().setValue(post)
             // FirebaseDatabase.getInstance().reference.child("Interests").child(it).child("users").child(postid)
             //.setValue(FirebaseAuth.getInstance().currentUser?.email)
         }
 
-        FirebaseDatabase.getInstance().reference.child("posts").child(postid).setValue(post).addOnCompleteListener {
+        FirebaseDatabase.getInstance().reference.child("posts").push().setValue(post).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Post added successfully", Toast.LENGTH_LONG).show()
             } else {

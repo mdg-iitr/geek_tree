@@ -5,7 +5,8 @@ class Posts(
     var date: String? = "",
     var time: String? = "",
     var userid: String? = "",
-    var image: String? = ""
+    var image: String? = "",
+var interest:ArrayList<String>
 ) {
     companion object {
         var postInterest = arrayListOf<String>()
