@@ -32,7 +32,7 @@
     </fragment>
     <fragment android:id="@+id/destination_profile" android:name="com.codaira.geektree.destination_profile"
               android:label="Profile" tools:layout="@layout/fragment_destination_profile"/>
-    <fragment android:id="@+id/destination_addPost" android:name="com.codaira.geektree.destination_addPost"
+    <fragment android:id="@+id/destination_addPost" android:name="com.codaira.geektree.AddPostFragment"
               android:label="Add Post" tools:layout="@layout/fragment_destination_add_post"/>
     <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.destination_pinnedPosts"
               android:label="Pinned Posts"

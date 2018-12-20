@@ -21,11 +21,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_destination_add_post.*
+import kotlinx.android.synthetic.main.fragment_destination_profile.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class destination_addPost : Fragment() {
+class AddPostFragment : Fragment() {
 
     var url: String? = ""
     var imageuri: Uri? = null
@@ -50,13 +51,10 @@ class destination_addPost : Fragment() {
 
         //To show interests using recycler-so the interests of previous post are not over written
         button_addinterest_post.setOnClickListener {
-            Posts.postInterest.removeAll(Interests.allInterestsArray)
+            Posts.postInterest.removeAll(com.codaira.geektree.model.Interests.allInterestsArray)
 
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-                addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
-
-
-
+            addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
         }
 
         button_postimage_post.setOnClickListener {
@@ -98,6 +96,9 @@ class destination_addPost : Fragment() {
         FirebaseDatabase.getInstance().reference.child("posts").push().setValue(post).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Post added successfully", Toast.LENGTH_LONG).show()
+
+                addpost_recycler.removeAllViews()
+
             } else {
                 Toast.makeText(activity, "Post NOT added", Toast.LENGTH_LONG).show()
             }
