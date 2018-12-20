@@ -42,7 +42,6 @@ class HomeScreen : Fragment() {
        MainActivity.user?.interests?.interests?.forEach {
 
 
-
 //        FirebaseDatabase.getInstance().reference.child("User").child("interests").child("interests").addValueEventListener(object : ValueEventListener{
 //            override fun onCancelled(p0: DatabaseError) {
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

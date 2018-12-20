@@ -14,7 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.Adapters.PostInterestAdapter
+import com.codaira.geektree.model.Interests
 import com.codaira.geektree.model.Posts
+import com.google.android.gms.common.util.ArrayUtils.removeAll
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -48,8 +50,13 @@ class destination_addPost : Fragment() {
 
         //To show interests using recycler-so the interests of previous post are not over written
         button_addinterest_post.setOnClickListener {
+            Posts.postInterest.removeAll(Interests.allInterestsArray)
+
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-            addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
+                addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
+
+
+
         }
 
         button_postimage_post.setOnClickListener {
