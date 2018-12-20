@@ -16,7 +16,7 @@
     </fragment>
     <fragment android:id="@+id/destination_home" android:name="com.codaira.geektree.HomeScreen"
               android:label="Home" tools:layout="@layout/fragment_home_screen">
-        <action android:id="@+id/action_destination_home_to_destination_login" app:destination="@id/destination_login"
+        <action android:id="@+id/action_destination_home_to_destination_login" app:destination="@+id/destination_login"
                 app:popUpTo="@+id/destination_home"
                 app:popUpToInclusive="true"/>
         <action android:id="@+id/action_destination_home_to_destination_addPost2"

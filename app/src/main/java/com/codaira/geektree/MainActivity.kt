@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         //changing fragments when firebase auth changed
         firebaseAuth.addAuthStateListener {
             if (firebaseAuth.currentUser == null) {
-                navController.navigate(R.id.action_destination_home_to_destination_login)
+                navController.navigate(R.id.destination_login)
                 bottom_nav.visibility = View.INVISIBLE
             } else {
                 val intRef = FirebaseDatabase.getInstance().reference.child("User")

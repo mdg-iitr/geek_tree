@@ -12,6 +12,7 @@ import com.codaira.geektree.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import android.widget.TabHost
+import kotlinx.android.synthetic.main.fragment_destination_profile.*
 
 
 class destination_profile : Fragment() {
@@ -33,11 +34,14 @@ class destination_profile : Fragment() {
     }
 
 
-  //todo: make it editable, make logout
+    //todo: make it editable, make logout
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        text_logout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+        }
         val host = view.findViewById(R.id.tabhost) as TabHost
         host.setup()
 
@@ -48,9 +52,9 @@ class destination_profile : Fragment() {
         host.addTab(spec)
 
         //Tab 2
-        spec = host.newTabSpec("InterestsFragment")
+        spec = host.newTabSpec("Interests")
         spec.setContent(R.id.Interests)
-        spec.setIndicator("InterestsFragment")
+        spec.setIndicator("Interests")
         host.addTab(spec)
         //todo:To show interests using recycler
 
