@@ -77,13 +77,13 @@ class destination_addPost : Fragment() {
             edit_posttext_post.text.toString(),
             SimpleDateFormat("dd: MM : yyyy").format(Calendar.getInstance().time),
             SimpleDateFormat("HH:mm").format(Calendar.getInstance().time),
-            FirebaseAuth.getInstance().currentUser?.email, url,Posts.postInterest
+            FirebaseAuth.getInstance().currentUser?.email, url
         )
 
         //database with all posts and (users:not for now) of an interest together
         Posts.postInterest.forEach {
 
-            FirebaseDatabase.getInstance().reference.child("Interests").child(it).child("post").push().setValue(post)
+            FirebaseDatabase.getInstance().reference.child("Interests").child(it).push().setValue(post)
             // FirebaseDatabase.getInstance().reference.child("Interests").child(it).child("users").child(postid)
             //.setValue(FirebaseAuth.getInstance().currentUser?.email)
         }

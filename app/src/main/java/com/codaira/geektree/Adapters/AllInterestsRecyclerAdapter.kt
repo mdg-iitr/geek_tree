@@ -12,7 +12,7 @@ class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
     RecyclerView.Adapter<AllInterestsRecyclerAdapter.ViewHolder>() {
 
     companion object {
-        var temporaryInterestList = ArrayList<String>()
+        var temporaryInterestList = mutableListOf<String>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

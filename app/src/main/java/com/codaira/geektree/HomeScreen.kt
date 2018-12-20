@@ -14,12 +14,16 @@ import com.codaira.geektree.model.Posts
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.post_layout.view.*
 
 class HomeScreen : Fragment() {
+     var givenInterest:String=""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +39,23 @@ class HomeScreen : Fragment() {
         view.findViewById<RecyclerView>(R.id.homescreen_recycler).layoutManager =
                 LinearLayoutManager(activity, RecyclerView.VERTICAL, false) // adds recycler in vertical orientation
 
-        MainActivity.user?.interests?.interests?.forEach {
+       MainActivity.user?.interests?.interests?.forEach {
 
-            val query = FirebaseDatabase.getInstance().reference.orderByChild("Interests").equalTo(it) //to check if interest of a user matches the interest a post is under
+
+
+//        FirebaseDatabase.getInstance().reference.child("User").child("interests").child("interests").addValueEventListener(object : ValueEventListener{
+//            override fun onCancelled(p0: DatabaseError) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onDataChange(p0: DataSnapshot) {
+//                givenInterest=p0.getValue()
+//            }
+//
+//        }
+//        )
+
+            val query = FirebaseDatabase.getInstance().reference.child("Interests").child(it) //to check if interest of a user matches the interest a post is under
             val options =
                 FirebaseRecyclerOptions.Builder<Posts>().setQuery(query, Posts::class.java).setLifecycleOwner(activity)
                     .build()

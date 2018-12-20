@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
 import com.codaira.geektree.model.Posts
 
-class PostInterestAdapter(var postinterestslist: ArrayList<String>) :
+class PostInterestAdapter(var postinterestslist: MutableList<String>) :
     RecyclerView.Adapter<PostInterestAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
