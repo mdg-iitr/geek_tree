@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".AddPostFragment">
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="132dp"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/edit_posttext_post"
+                tools:paddingTop="20dp"
+                android:lines="10"
+                android:scrollbars="vertical" android:hint="Write something..."/>
+
+        <Button
+                android:text="Add Interest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_addinterest_post"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:id="@+id/addpost_recycler"/>
+        <ImageButton
+                android:layout_width="384dp"
+                android:layout_height="253dp" android:id="@+id/button_postimage_post"
+                android:layout_gravity="center"/>
+        <TextView
+                android:layout_width="203dp"
+                android:layout_height="wrap_content" android:id="@+id/text_prompt_post"
+                android:layout_gravity="center"/>
+        <Button
+                android:text="ADD POST"
+                android:layout_width="398dp"
+                android:layout_height="75dp" android:id="@+id/button_addpost_post"/>
+    </LinearLayout>
+</ScrollView>
