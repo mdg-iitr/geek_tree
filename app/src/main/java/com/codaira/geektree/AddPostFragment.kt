@@ -13,29 +13,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.model.Interests
 import com.codaira.geektree.Adapters.PostInterestAdapter
 import com.codaira.geektree.model.Posts
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_destination_add_post.*
-import kotlinx.android.synthetic.main.fragment_destination_profile.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class AddPostFragment : Fragment() {
 
-/**
- * A simple [Fragment] subclass.
- *
- */
-
-class destination_addPost : Fragment() {
     var url: String? = ""
     var imageuri: Uri? = null
     var GalleryPick = 1
@@ -98,8 +87,8 @@ class destination_addPost : Fragment() {
 
             FirebaseDatabase.getInstance().reference.child("Interests")
                 .child(it).child("post").push().setValue(post)
-           // FirebaseDatabase.getInstance().reference.child("Interests").child(it).child("users").child(postid)
-                //.setValue(FirebaseAuth.getInstance().currentUser?.email)
+            // FirebaseDatabase.getInstance().reference.child("Interests").child(it).child("users").child(postid)
+            //.setValue(FirebaseAuth.getInstance().currentUser?.email)
         }
 
         FirebaseDatabase.getInstance().reference.child("posts").child(postid).setValue(post).addOnCompleteListener {

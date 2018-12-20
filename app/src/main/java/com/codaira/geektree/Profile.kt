@@ -1,8 +1,5 @@
 package com.codaira.geektree
 
-import android.app.SearchManager
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +10,6 @@ import androidx.fragment.app.Fragment
 import com.codaira.geektree.databinding.FragmentDestinationProfileBinding
 import com.codaira.geektree.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import android.widget.TabHost
 

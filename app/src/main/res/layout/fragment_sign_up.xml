@@ -14,7 +14,7 @@
 
         <EditText
                 android:layout_width="409dp" android:layout_height="56dp"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:id="@+id/edit_email_signup"
                 android:hint="Enter email"/>
         <EditText
