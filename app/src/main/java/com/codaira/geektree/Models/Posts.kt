@@ -1,4 +1,9 @@
-package com.codaira.geektree.model
+package com.codaira.geektree.Models
+
+//contains fields shown in posts on homeScreen
+//model class for the posts shown
+//companion object saves interests of posts
+
 
 class Posts(
     var posttext: String? = "",

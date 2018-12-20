@@ -1,4 +1,4 @@
-package com.codaira.geektree
+package com.codaira.geektree.Views
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.codaira.geektree.model.Interests
-import com.codaira.geektree.model.User
+import com.codaira.geektree.Models.User
+import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        MainActivity.user = p0.getValue(User::class.java)
+                        user = p0.getValue(User::class.java)
 
                         if(user?.interests?.interests==null){
                             navController.navigate(R.id.destination_interests)
@@ -73,7 +73,9 @@ class MainActivity : AppCompatActivity() {
     public fun showBootomNav(){
         bottom_nav.visibility = View.VISIBLE
         bottom_nav?.let {
-            NavigationUI.setupWithNavController(it, Navigation.findNavController(this, R.id.nav_host_fragment))
+            NavigationUI.setupWithNavController(it, Navigation.findNavController(this,
+                R.id.nav_host_fragment
+            ))
         }
     }
 }
