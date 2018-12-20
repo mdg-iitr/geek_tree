@@ -55,6 +55,8 @@ class AddPostFragment : Fragment() {
 
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
             addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
+
+            addpost_recycler.visibility = View.VISIBLE
         }
 
         button_postimage_post.setOnClickListener {
@@ -97,7 +99,7 @@ class AddPostFragment : Fragment() {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Post added successfully", Toast.LENGTH_LONG).show()
 
-                addpost_recycler.removeAllViews()
+                addpost_recycler.visibility = View.GONE
 
             } else {
                 Toast.makeText(activity, "Post NOT added", Toast.LENGTH_LONG).show()
