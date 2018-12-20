@@ -1,62 +1,32 @@
 package com.codaira.geektree.Adapters
 
+//Adapter to save interests of user on database
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
-import com.codaira.geektree.model.Interests
+import com.codaira.geektree.ViewHolders.AllInterestsRecyclerViewHolder
 
 class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
-    RecyclerView.Adapter<AllInterestsRecyclerAdapter.ViewHolder>() {
+    RecyclerView.Adapter<AllInterestsRecyclerViewHolder>() {
 
     companion object {
         var temporaryInterestList = mutableListOf<String>()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllInterestsRecyclerViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.interests_layout, parent, false)
-        return ViewHolder(v)
+        return AllInterestsRecyclerViewHolder(v)
     }
 
     override fun getItemCount(): Int {
         return interestslist.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AllInterestsRecyclerViewHolder, position: Int) {
         val interest: String = interestslist[position]
         holder.setInterestString(interest)
     }
-
-    class ViewHolder(val itemview: View) : RecyclerView.ViewHolder(itemview) {
-        lateinit var a: CheckBox
-
-        fun setInterestString(interest: String) {
-            a.setText(interest)
-        }
-
-        init {
-            a = itemview.findViewById<CheckBox>(R.id.interest_of_user)
-
-            itemview.setOnClickListener { a.isChecked = !a.isChecked }
-            a.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    addItemToList(a.text.toString())
-                } else {
-                    removeItemFromList(a.text.toString())
-                }
-            }
-        }
-
-        fun removeItemFromList(s: String) {
-            AllInterestsRecyclerAdapter.temporaryInterestList.remove(s)
-        }
-
-        fun addItemToList(s: String) {
-            AllInterestsRecyclerAdapter.temporaryInterestList.add(s)
-        }
-
-    }
-
 }
+

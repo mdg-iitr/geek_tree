@@ -1,12 +1,11 @@
-package com.codaira.geektree
+package com.codaira.geektree.Views
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_destination_pinned_posts.*
 

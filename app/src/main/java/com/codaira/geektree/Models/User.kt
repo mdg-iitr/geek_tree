@@ -1,4 +1,7 @@
-package com.codaira.geektree.model
+package com.codaira.geektree.Models
+
+//fields of user saved in database
+//firebase data binded to it in mainActivity
 
 class User(
     var email: String? = "",
