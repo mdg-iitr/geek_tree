@@ -58,7 +58,7 @@ class destination_addPost : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //To show interests using recycler-so the interests of previous post are not over written
-        edit_posttext_post.setOnClickListener {
+        button_addinterest_post.setOnClickListener {
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
             addpost_recycler?.adapter = PostInterestAdapter(com.codaira.geektree.model.Interests.userInterests)
         }
@@ -90,14 +90,14 @@ class destination_addPost : Fragment() {
             SimpleDateFormat("HH:mm").format(Calendar.getInstance().time),
             FirebaseAuth.getInstance().currentUser?.email, url
         )
-        FirebaseDatabase.getInstance().reference.child("posts").child(postid).child("interests")
+        FirebaseDatabase.getInstance().reference.child("posts").push().child("interests")
             .setValue(Posts.postInterest)
 
         //database with all posts and (users:not for now) of an interest together
         Posts.postInterest.forEach {
 
             FirebaseDatabase.getInstance().reference.child("Interests")
-                .child(it).child("post").child(postid).setValue(post)
+                .child(it).child("post").push().setValue(post)
            // FirebaseDatabase.getInstance().reference.child("Interests").child(it).child("users").child(postid)
                 //.setValue(FirebaseAuth.getInstance().currentUser?.email)
         }

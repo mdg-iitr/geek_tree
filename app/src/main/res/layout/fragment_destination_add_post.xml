@@ -19,6 +19,10 @@
                 android:lines="10"
                 android:scrollbars="vertical" android:hint="Write something..."/>
 
+        <Button
+                android:text="Add Interest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/button_addinterest_post"/>
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -37,7 +41,7 @@
                 android:layout_gravity="center"/>
         <TextView
                 android:layout_width="203dp"
-                android:layout_height="53dp" android:id="@+id/text_prompt_post"
+                android:layout_height="wrap_content" android:id="@+id/text_prompt_post"
                 android:layout_gravity="center"/>
         <Button
                 android:text="ADD POST"

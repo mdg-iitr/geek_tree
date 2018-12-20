@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-
+           var intRef=FirebaseDatabase.getInstance().reference.child("User").child(FirebaseAuth.getInstance().currentUser?.uid.toString()).child("interests")
         val firebaseAuth = FirebaseAuth.getInstance()
 
         //changing fragments when firebase auth changed
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.action_destination_home_to_destination_login)
                 bottom_nav.visibility = View.INVISIBLE
             } else {
-                if (FirebaseDatabase.getInstance().reference.child("User").child(FirebaseAuth.getInstance().currentUser?.uid.toString()).child("interests").equals("")){
+                if (intRef.equals("")){
                     navController.navigate(R.id.destination_interests)
                 }
                 else {
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                     bottom_nav?.let {
                         NavigationUI.setupWithNavController(it, navController)
                     }
+                    Interests.userInterests= arrayListOf(intRef.toString())
                 }
 
             }
