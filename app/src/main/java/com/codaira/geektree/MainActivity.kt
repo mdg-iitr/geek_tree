@@ -51,10 +51,7 @@ class MainActivity : AppCompatActivity() {
                             navController.navigate(R.id.destination_interests)
                         }else{
                             navController.navigate(R.id.destination_home)
-                            bottom_nav.visibility = View.VISIBLE
-                            bottom_nav?.let {
-                                NavigationUI.setupWithNavController(it, navController)
-                            }
+                            showBootomNav()
                         }
                     }
 
@@ -72,6 +69,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+    public fun showBootomNav(){
+        bottom_nav.visibility = View.VISIBLE
+        bottom_nav?.let {
+            NavigationUI.setupWithNavController(it, Navigation.findNavController(this, R.id.nav_host_fragment))
+        }
+    }
 }
 
 

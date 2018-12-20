@@ -1,5 +1,6 @@
 package com.codaira.geektree
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.model.Interests
@@ -14,6 +16,7 @@ import com.codaira.geektree.Adapters.AllInterestsRecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_interests.*
 
 class InterestsFragment : Fragment() {
@@ -37,8 +40,8 @@ class InterestsFragment : Fragment() {
         interest_recycler?.adapter = AllInterestsRecyclerAdapter(Interests.allInterestsArray)
 
 
-        button_save_interests.setOnClickListener {
-            val nav=it
+        button_save_interests.setOnClickListener {view->
+
             if (!AllInterestsRecyclerAdapter.temporaryInterestList.isEmpty()) {
                 val interests = Interests(AllInterestsRecyclerAdapter.temporaryInterestList)
 
@@ -46,8 +49,10 @@ class InterestsFragment : Fragment() {
 
                 save.addOnCompleteListener {
                     Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
-                    Navigation.findNavController(nav).navigate(R.id.action_interests_to_homeScreen)
-
+                    val navController = Navigation.findNavController(view)
+                    navController.navigate(R.id.destination_home)
+                    val act  = activity as MainActivity
+                    act.showBootomNav()
                 }.addOnFailureListener {
                     Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
                 }

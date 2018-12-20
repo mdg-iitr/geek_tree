@@ -4,7 +4,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".AddPostFragment">
+            tools:context=".destination_addPost">
     <LinearLayout android:orientation="vertical"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
@@ -23,18 +23,10 @@
                 android:text="Add Interest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button_addinterest_post"/>
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:orientation="vertical">
-                <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:id="@+id/addpost_recycler"/>
-            </LinearLayout>
-        </ScrollView>
-
+                android:layout_height="55dp"
+                android:id="@+id/addpost_recycler"/>
         <ImageButton
                 android:layout_width="384dp"
                 android:layout_height="253dp" android:id="@+id/button_postimage_post"

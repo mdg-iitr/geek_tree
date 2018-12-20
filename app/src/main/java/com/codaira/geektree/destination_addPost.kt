@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AddPostFragment : Fragment() {
+class destination_addPost : Fragment() {
 
     var url: String? = ""
     var imageuri: Uri? = null
