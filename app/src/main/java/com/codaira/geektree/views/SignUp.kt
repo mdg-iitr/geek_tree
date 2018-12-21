@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 class SignUp : Fragment() {
+    lateinit var c:String
 
 
     override fun onCreateView(
@@ -29,6 +30,7 @@ class SignUp : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         //setting up spinner_branch
         val spinnerBranchArray: Array<String> = arrayOf(
@@ -108,8 +110,8 @@ class SignUp : Fragment() {
 //                    }
 //                    else{
 
-            if (!isEmpty(name) && !isEmpty(email) && !isEmpty(year) && !isEmpty(branch) && !isEmpty(username) && password.length >= 6) {
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+            if (!isEmpty(name) && !isEmpty(email) && !isEmpty(year) && !isEmpty(branch) && !isEmpty(username) && c.length >= 6) {
+                mAuth.createUserWithEmailAndPassword(email, c).addOnCompleteListener {
                     if (it.isSuccessful) {
                         Toast.makeText(
                             activity,
@@ -120,11 +122,11 @@ class SignUp : Fragment() {
                         mAuth.currentUser?.sendEmailVerification()
 
                         val user =
-                            User(email, password, username, name, phoneNumber, fb, linkedin, branch, year)
+                            User(email, c, username, name, phoneNumber, fb, linkedin, branch, year)
                         FirebaseDatabase.getInstance().reference.child("User")
                             .child(mAuth.currentUser?.uid.toString())
                             .setValue(user)
-                        mAuth.signInWithEmailAndPassword(email, password)
+                        mAuth.signInWithEmailAndPassword(email, c)
                     } else {
                         Toast.makeText(activity, "Couldn't SignUp please try again.", Toast.LENGTH_SHORT).show()
                     }
@@ -143,6 +145,7 @@ class SignUp : Fragment() {
     }
 
     private fun usernameCheck(password: String, username:String,ref:DatabaseReference ): String {
+        c=password
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -153,13 +156,13 @@ class SignUp : Fragment() {
                     for (b in a.children) {
                         if (b.value == username) {
                             Toast.makeText(activity, "username already exists", Toast.LENGTH_SHORT).show()
-                            var password = "123"
+                            c ="123"
                         }
                     }
                 }
             }
         })
-        return password
+        return c
     }
 
 }
