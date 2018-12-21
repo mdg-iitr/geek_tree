@@ -1,4 +1,4 @@
-package com.codaira.geektree.Views
+package com.codaira.geektree.views
 
 
 import android.app.Activity.RESULT_OK
@@ -13,8 +13,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.Adapters.PostInterestAdapter
-import com.codaira.geektree.Models.Posts
+import com.codaira.geektree.adapters.PostInterestAdapter
+import com.codaira.geektree.models.Posts
 import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -51,7 +51,7 @@ class AddPostFragment : Fragment() {
         //To show interests using recycler-so the interests of previous post are not over written
 
         button_addinterest_post.setOnClickListener {
-            Posts.postInterest.removeAll(com.codaira.geektree.Models.Interests.allInterestsArray)
+            Posts.postInterest.removeAll(com.codaira.geektree.models.Interests.allInterestsArray)
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
             addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
             addpost_recycler.visibility = View.VISIBLE

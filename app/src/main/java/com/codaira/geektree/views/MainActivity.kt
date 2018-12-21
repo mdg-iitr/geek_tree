@@ -1,12 +1,13 @@
-package com.codaira.geektree.Views
+package com.codaira.geektree.views
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.codaira.geektree.Models.User
+import com.codaira.geektree.models.User
 import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -46,12 +47,19 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onDataChange(p0: DataSnapshot) {
                         user = p0.getValue(User::class.java)
+                        if (!firebaseAuth!!.currentUser!!.isEmailVerified){
+                            navController.navigate(R.id.destination_signup)
+                            bottom_nav.visibility = View.INVISIBLE
+                        }
+                        else {
 
-                        if(user?.interests?.interests==null){
-                            navController.navigate(R.id.destination_interests)
-                        }else{
-                            navController.navigate(R.id.destination_home)
-                            showBootomNav()
+                            if (user?.interests?.interests == null) {
+                                navController.navigate(R.id.destination_interests)
+                                bottom_nav.visibility = View.INVISIBLE
+                            } else {
+                                navController.navigate(R.id.destination_home)
+                                showBootomNav()
+                            }
                         }
                     }
 

@@ -1,4 +1,4 @@
-package com.codaira.geektree.Models
+package com.codaira.geektree.models
 
 //contains two lists:interest->user interests list and allInterestsArray->list of all the interests
 //class to retrieve lists in recyclerViews of addPost/interest fragment

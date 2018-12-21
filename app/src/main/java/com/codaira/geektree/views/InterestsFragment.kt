@@ -1,4 +1,4 @@
-package com.codaira.geektree.Views
+package com.codaira.geektree.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.Models.Interests
-import com.codaira.geektree.Adapters.AllInterestsRecyclerAdapter
+import com.codaira.geektree.models.Interests
+import com.codaira.geektree.adapters.AllInterestsRecyclerAdapter
 import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference

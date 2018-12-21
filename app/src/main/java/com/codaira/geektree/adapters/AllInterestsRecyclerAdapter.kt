@@ -1,4 +1,4 @@
-package com.codaira.geektree.Adapters
+package com.codaira.geektree.adapters
 
 //Adapter to save interests of user on database
 
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
-import com.codaira.geektree.ViewHolders.AllInterestsRecyclerViewHolder
+import com.codaira.geektree.viewHolders.AllInterestsRecyclerViewHolder
 
 class AllInterestsRecyclerAdapter(var interestslist: ArrayList<String>) :
     RecyclerView.Adapter<AllInterestsRecyclerViewHolder>() {

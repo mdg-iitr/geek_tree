@@ -1,4 +1,4 @@
-package com.codaira.geektree.Views
+package com.codaira.geektree.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import com.codaira.geektree.R
 import kotlinx.android.synthetic.main.fragment_destination_profile.*
 
 
-class destination_profile : Fragment() {
+class Profile : Fragment() {
     lateinit var firebaseUser: String
     lateinit var databaseref: DatabaseReference
 
@@ -28,7 +28,7 @@ class destination_profile : Fragment() {
         firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
         databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser)
 
-        binding?.user = MainActivity.user
+        binding?.user=MainActivity.user
         return view
     }
 
