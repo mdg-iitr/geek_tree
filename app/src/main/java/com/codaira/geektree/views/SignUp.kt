@@ -1,6 +1,7 @@
 package com.codaira.geektree.views
 
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.codaira.geektree.models.User
 import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
@@ -17,13 +20,15 @@ import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 
 class SignUp : Fragment() {
-    lateinit var c:String
-
+    lateinit var mAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        mAuth = FirebaseAuth.getInstance()
+
         return inflater.inflate(R.layout.fragment_sign_up, container, false)
 
     }
@@ -80,72 +85,71 @@ class SignUp : Fragment() {
             val phoneNumber = edit_number_signup.text.toString()
 
 
-            val mAuth = FirebaseAuth.getInstance()
             //to see if username already exists
             val ref = FirebaseDatabase.getInstance().reference.child("User")
 
-            usernameCheck(password, username, ref)
+            usernameCheck(username, ref, object: CallbackInterface<Boolean> {
+                override fun callback(data: Boolean) {
+
+                    if (!data) {
 
 
-//            ref.addChildEventListener(object : ChildEventListener{
-//                override fun onCancelled(p0: DatabaseError) {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//
-//                override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//
-//                override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//
-//                override fun onChildRemoved(p0: DataSnapshot) {
-//                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//                }
-//
-//                override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-//                    if (p1==username){
-//                        Toast.makeText(activity,"username already exists",Toast.LENGTH_LONG).show()
-//                    }
-//                    else{
+                        if (!isEmpty(name) && !isEmpty(email) && !isEmpty(year) && !isEmpty(branch) && !isEmpty(username) && password.length >= 6) {
+                            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    Toast.makeText(
+                                        activity,
+                                        "please verify your email from the link sent to your id",
+                                        Toast.LENGTH_LONG
+                                    ).show()
 
-            if (!isEmpty(name) && !isEmpty(email) && !isEmpty(year) && !isEmpty(branch) && !isEmpty(username) && c.length >= 6) {
-                mAuth.createUserWithEmailAndPassword(email, c).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Toast.makeText(
-                            activity,
-                            "please verify your email from the link sent to your id",
-                            Toast.LENGTH_LONG
-                        ).show()
+                                    mAuth.currentUser?.sendEmailVerification()
 
-                        mAuth.currentUser?.sendEmailVerification()
+                                    val user =
+                                        User(email, password, username, name, phoneNumber, fb, linkedin, branch, year)
+                                    FirebaseDatabase.getInstance().reference.child("User")
+                                        .child(mAuth.currentUser?.uid.toString())
+                                        .setValue(user)
+                                    mAuth.signInWithEmailAndPassword(email, password)
+                                } else {
+                                    Toast.makeText(activity, "Couldn't SignUp please try again.", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+                        } else {
+                            Toast.makeText(
+                                activity,
+                                "Please enter all details and password must be 6 character long.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
 
-                        val user =
-                            User(email, c, username, name, phoneNumber, fb, linkedin, branch, year)
-                        FirebaseDatabase.getInstance().reference.child("User")
-                            .child(mAuth.currentUser?.uid.toString())
-                            .setValue(user)
-                        mAuth.signInWithEmailAndPassword(email, c)
-                    } else {
-                        Toast.makeText(activity, "Couldn't SignUp please try again.", Toast.LENGTH_SHORT).show()
+
+
                     }
                 }
-            } else {
-                Toast.makeText(
-                    activity,
-                    "Please enter all details and password must be 6 character long.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            })
 
-            //    }
-            // })
+
         }
     }
 
-    private fun usernameCheck(password: String, username:String,ref:DatabaseReference ): String {
-        c=password
+
+
+    override fun onResume() {
+        super.onResume()
+
+        //you need to run this user task to get updated current user status
+        val userTask = mAuth.currentUser?.reload()
+        userTask?.addOnSuccessListener {
+            if(mAuth.currentUser?.isEmailVerified!!){
+                Navigation.findNavController(activity as Activity,R.id.nav_host_fragment).navigate(R.id.destination_interests)
+            }
+        }
+    }
+
+    private fun usernameCheck(username: String, ref: DatabaseReference, @NonNull callbackInterface: CallbackInterface<Boolean>){
+
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -156,13 +160,15 @@ class SignUp : Fragment() {
                     for (b in a.children) {
                         if (b.value == username) {
                             Toast.makeText(activity, "username already exists", Toast.LENGTH_SHORT).show()
-                            c ="123"
+                            callbackInterface.callback(true)
+                            return
                         }
                     }
                 }
+                callbackInterface.callback(false)
             }
         })
-        return c
+
     }
 
 }

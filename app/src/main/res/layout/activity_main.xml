@@ -13,6 +13,7 @@
             android:layout_height="49dp"
             android:background="?colorPrimary"
             android:theme="@style/ToolbarTheme"
+            app:popupTheme="@style/popupTheme"
     />
 
     <fragment
@@ -29,5 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             app:menu="@menu/menu_navigation"/>
+
+
+
 
 </LinearLayout>

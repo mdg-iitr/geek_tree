@@ -14,8 +14,8 @@
             android:title="Pinned Post"
             android:id="@+id/destination_pinnedPosts"/>
     <item
-            android:icon= "@drawable/ic_baseline_person_24px"
-            android:title="Profile"
-            android:id="@+id/destination_profile"/>
+            android:icon= "@drawable/ic_baseline_view_module_24px"
+            android:title="All Posts"
+            android:id="@+id/destination_all_posts"/>
 
 </menu>

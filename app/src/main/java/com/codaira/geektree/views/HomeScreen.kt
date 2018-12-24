@@ -2,18 +2,24 @@ package com.codaira.geektree.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.models.Posts
 import com.codaira.geektree.R
+import com.codaira.geektree.R.menu.menu_popup
 import com.codaira.geektree.viewHolders.HomePostsViewHolder
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_destination_profile.*
 
 import kotlinx.android.synthetic.main.post_layout.view.*
 
@@ -31,6 +37,8 @@ class HomeScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         view.findViewById<RecyclerView>(R.id.homescreen_recycler).layoutManager =
                 LinearLayoutManager(activity, RecyclerView.VERTICAL, false) // adds recycler in vertical orientation
