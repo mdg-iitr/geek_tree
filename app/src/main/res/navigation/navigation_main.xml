@@ -44,4 +44,6 @@
     <fragment android:name="com.codaira.geektree.interestAccPosts"
               android:label="Posts" tools:layout="@layout/fragment_interest_acc_posts"
               android:id="@+id/destination_interestAccPosts"/>
+    <fragment android:id="@+id/destination_emailVerification" android:name="com.codaira.geektree.EmailVerification"
+              android:label="fragment_email_verification" tools:layout="@layout/fragment_email_verification"/>
 </navigation>

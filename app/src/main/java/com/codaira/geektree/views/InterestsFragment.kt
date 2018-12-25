@@ -48,9 +48,7 @@ class InterestsFragment : Fragment() {
                 save.addOnCompleteListener {
                     Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
                     val navController = Navigation.findNavController(view)
-                    navController.navigate(R.id.destination_home)
-                    val act  = activity as MainActivity
-                    act.showBootomNav()
+                    navController.navigate(R.id.destination_emailVerification)
                 }.addOnFailureListener {
                     Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
                 }

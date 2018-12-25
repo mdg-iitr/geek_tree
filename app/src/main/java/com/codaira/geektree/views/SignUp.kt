@@ -97,14 +97,6 @@ class SignUp : Fragment() {
                         if (!isEmpty(name) && !isEmpty(email) && !isEmpty(year) && !isEmpty(branch) && !isEmpty(username) && password.length >= 6) {
                             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    Toast.makeText(
-                                        activity,
-                                        "please verify your email from the link sent to your id",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-
-                                    mAuth.currentUser?.sendEmailVerification()
-
                                     val user =
                                         User(email, password, username, name, phoneNumber, fb, linkedin, branch, year)
                                     FirebaseDatabase.getInstance().reference.child("User")

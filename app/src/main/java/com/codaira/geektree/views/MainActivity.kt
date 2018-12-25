@@ -55,19 +55,20 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onDataChange(p0: DataSnapshot) {
                         user = p0.getValue(User::class.java)
-                        if (!firebaseAuth!!.currentUser!!.isEmailVerified) {
-                            navController.navigate(R.id.destination_signup)
-                            bottom_nav.visibility = View.INVISIBLE
-
+                        if (firebaseAuth!!.currentUser!!.isEmailVerified) {
+                            navController.navigate(R.id.destination_home)
+                            showBootomNav()
                         } else {
 
                             if (user?.interests?.interests == null) {
                                 navController.navigate(R.id.destination_interests)
                                 bottom_nav.visibility = View.INVISIBLE
 
-                            } else {
-                                navController.navigate(R.id.destination_home)
-                                showBootomNav()
+                            }
+                            else {
+                                navController.navigate(R.id.destination_emailVerification)
+                                bottom_nav.visibility = View.INVISIBLE
+
                             }
                         }
                     }
