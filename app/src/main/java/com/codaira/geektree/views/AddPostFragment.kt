@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.adapters.PostInterestAdapter
-import com.codaira.geektree.models.Posts
+import com.codaira.geektree.data.Posts
 import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -31,9 +31,6 @@ class AddPostFragment : Fragment() {
     var GalleryPick = 1
 
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,15 +40,13 @@ class AddPostFragment : Fragment() {
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //To show interests using recycler-so the interests of previous post are not over written
 
         button_addinterest_post.setOnClickListener {
-            Posts.postInterest.removeAll(com.codaira.geektree.models.Interests.allInterestsArray)
+            Posts.postInterest.removeAll(com.codaira.geektree.data.Interests.allInterestsArray)
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
             addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
             addpost_recycler.visibility = View.VISIBLE
@@ -72,7 +67,6 @@ class AddPostFragment : Fragment() {
     }
 
 
-
     private fun addpost() {
 
         if (imageuri != null && !isEmpty(edit_posttext_post.text.toString())) {
@@ -81,9 +75,7 @@ class AddPostFragment : Fragment() {
 
         if (isEmpty(edit_posttext_post.text.toString())) {
             Toast.makeText(activity, "Please Enter Text", Toast.LENGTH_LONG).show()
-        }
-
-        else if (imageuri == null) {
+        } else if (imageuri == null) {
             addPostToFirebase() //if no image added, updates text post to database
         }
 
@@ -95,8 +87,7 @@ class AddPostFragment : Fragment() {
             edit_posttext_post.text.toString(),
             SimpleDateFormat("dd: MM : yyyy").format(Calendar.getInstance().time),
             SimpleDateFormat("HH:mm").format(Calendar.getInstance().time),
-            FirebaseAuth.getInstance().currentUser?.email, url
-        )
+            FirebaseAuth.getInstance().currentUser?.email, url,Posts.postInterest)
 
         //database with all posts and (users:not for now) of an interest together
 
@@ -110,13 +101,11 @@ class AddPostFragment : Fragment() {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Post added successfully", Toast.LENGTH_LONG).show()
                 addpost_recycler.visibility = View.GONE
-            }
-            else {
+            } else {
                 Toast.makeText(activity, "Post NOT added", Toast.LENGTH_LONG).show()
             }
         }
     }
-
 
 
     private fun storeImageToFirebase() {
@@ -125,7 +114,8 @@ class AddPostFragment : Fragment() {
                 "dd: MM : yyyy"
             ).format(Calendar.getInstance().time)
         var uploadTask = FirebaseStorage.getInstance().reference.child("postImages").child(postid).putFile(
-            imageuri!!)
+            imageuri!!
+        )
 
 
         uploadTask.addOnSuccessListener {
@@ -143,15 +133,12 @@ class AddPostFragment : Fragment() {
     }
 
 
-
     private fun openGallery() {
         val gallery = Intent()
         gallery.setAction(Intent.ACTION_GET_CONTENT)
         gallery.setType("image/*")
         startActivityForResult(gallery, GalleryPick)
     }
-
-
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,4 +1,4 @@
-package com.codaira.geektree
+package com.codaira.geektree.views
 
 
 import android.app.Activity
@@ -8,7 +8,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.codaira.geektree.views.MainActivity
+import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_email_verification.*
 
@@ -45,7 +45,9 @@ class EmailVerification : Fragment() {
         val userTask = firebaseAuth.currentUser?.reload()
         userTask?.addOnSuccessListener {
             if(firebaseAuth.currentUser?.isEmailVerified!!){
-                Navigation.findNavController(activity as Activity,R.id.nav_host_fragment).navigate(R.id.destination_home)
+                Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(
+                    R.id.destination_home
+                )
                 var act=activity as MainActivity
                 act.showBootomNav()
             }

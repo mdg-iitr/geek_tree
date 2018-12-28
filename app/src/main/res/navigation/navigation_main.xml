@@ -41,9 +41,9 @@
     <fragment android:id="@+id/destination_all_posts" android:name="com.codaira.geektree.views.AllPosts"
               android:label="Select An Interest"
               tools:layout="@layout/fragment_all_posts"/>
-    <fragment android:name="com.codaira.geektree.interestAccPosts"
+    <fragment android:name="com.codaira.geektree.views.interestAccPosts"
               android:label="Posts" tools:layout="@layout/fragment_interest_acc_posts"
               android:id="@+id/destination_interestAccPosts"/>
-    <fragment android:id="@+id/destination_emailVerification" android:name="com.codaira.geektree.EmailVerification"
+    <fragment android:id="@+id/destination_emailVerification" android:name="com.codaira.geektree.views.EmailVerification"
               android:label="fragment_email_verification" tools:layout="@layout/fragment_email_verification"/>
 </navigation>

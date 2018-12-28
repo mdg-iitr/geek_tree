@@ -2,30 +2,21 @@ package com.codaira.geektree.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.codaira.geektree.databinding.FragmentDestinationProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import android.widget.TabHost
-import android.widget.Toast
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
-import com.codaira.geektree.adapters.AllInterestsRecyclerAdapter
-import com.codaira.geektree.adapters.PostInterestAdapter
 import com.codaira.geektree.adapters.ProfileInterestAdapter
-import com.codaira.geektree.models.User
 import com.codaira.geektree.views.MainActivity.Companion.user
-import kotlinx.android.synthetic.main.fragment_destination_add_post.*
 import kotlinx.android.synthetic.main.fragment_destination_profile.*
-import kotlinx.android.synthetic.main.fragment_interests.*
 
 
 class Profile : Fragment() {
@@ -53,23 +44,31 @@ class Profile : Fragment() {
 
         button_edit_branch.setOnClickListener {
             user?.branch=text_branch_profile.text.toString()
+            databaseref.setValue(user)
         }
 
 
         button_edit_year.setOnClickListener {
             user?.year=text_year_profile.text.toString()
+            databaseref.setValue(user)
+
         }
 
         button_edit_fb.setOnClickListener {
             user?.fb=text_fb_profile.text.toString()
+            databaseref.setValue(user)
+
         }
-        view
         button_edit_linkedin.setOnClickListener {
             user?.linkedin=text_linkedin_profile.text.toString()
+            databaseref.setValue(user)
+
         }
 
         button_edit_num.setOnClickListener {
             user?.phoneNumber=text_number_profile.text.toString()
+            databaseref.setValue(user)
+
         }
 
 

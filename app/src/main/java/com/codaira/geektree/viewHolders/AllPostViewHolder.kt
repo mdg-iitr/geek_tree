@@ -1,15 +1,11 @@
 package com.codaira.geektree.viewHolders
 
 import android.view.View
-import android.widget.CheckBox
 import android.widget.TextView
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
-import com.codaira.geektree.R.id.destination_all_posts
 import com.codaira.geektree.adapters.AllPostAdapter
-import com.codaira.geektree.models.Posts
 
 class AllPostViewHolder(val itemview: View) : RecyclerView.ViewHolder(itemview) {
 

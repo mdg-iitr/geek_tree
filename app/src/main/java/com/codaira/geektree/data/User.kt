@@ -1,4 +1,4 @@
-package com.codaira.geektree.models
+package com.codaira.geektree.data
 
 //fields of user saved in database
 //firebase data binded to it in mainActivity

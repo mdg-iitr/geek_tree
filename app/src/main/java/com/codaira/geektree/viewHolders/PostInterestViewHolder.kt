@@ -3,7 +3,7 @@ package com.codaira.geektree.viewHolders
 import android.view.View
 import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.models.Posts
+import com.codaira.geektree.data.Posts
 import com.codaira.geektree.R
 
 class PostInterestViewHolder(val itemview: View) : RecyclerView.ViewHolder(itemview) {

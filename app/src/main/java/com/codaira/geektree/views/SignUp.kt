@@ -12,8 +12,9 @@ import android.widget.*
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.codaira.geektree.models.User
+import com.codaira.geektree.data.User
 import com.codaira.geektree.R
+import com.codaira.geektree.interfaces.CallbackInterface
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*

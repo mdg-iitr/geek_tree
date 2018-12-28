@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.models.Interests
+import com.codaira.geektree.data.Interests
 import com.codaira.geektree.adapters.AllInterestsRecyclerAdapter
 import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
