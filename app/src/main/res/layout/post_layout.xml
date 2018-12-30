@@ -20,35 +20,54 @@
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:id="@+id/post_int"
+        android:text="Interests"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12sp"
+        android:singleLine="false"/>
 
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:text="User Name"
-                      android:id="@+id/post_user_name"
-                      android:layout_marginLeft="5dp"
-                      android:layout_marginTop="8dp"
-                      android:textAlignment="textStart"
-                      android:textSize="16sp"
-                      android:textStyle="bold"
-                      android:textColor="@android:color/black"/>
+                      android:orientation="horizontal">
 
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/post_date"
-                      android:text="Date"
-                      android:layout_marginLeft="5dp"
-                      android:textColor="@android:color/darker_gray"
-                      android:textSize="12sp"/>
+            <ImageView android:layout_width="63dp"
+                       android:layout_height="match_parent"
+                       android:adjustViewBounds="true"
+                       android:scaleType="centerCrop"
+                       android:id="@+id/post_dp"
+                       android:layout_gravity="center"/>
 
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/post_time"
-                      android:text="Time"
-                      android:layout_marginLeft="5dp"
-                      android:textColor="@android:color/darker_gray"
-                      android:textSize="12sp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:text="User Name"
+                          android:id="@+id/post_user_name"
+                          android:layout_marginLeft="5dp"
+                          android:layout_marginTop="8dp"
+                          android:textAlignment="textStart"
+                          android:textSize="16sp"
+                          android:textStyle="bold"
+                          android:textColor="@android:color/black"/>
+
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:id="@+id/post_date"
+                          android:text="Date"
+                          android:layout_marginLeft="5dp"
+                          android:textColor="@android:color/darker_gray"
+                          android:textSize="12sp"/>
+
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:id="@+id/post_time"
+                          android:text="Time"
+                          android:layout_marginLeft="5dp"
+                          android:textColor="@android:color/darker_gray"
+                          android:textSize="12sp"/>
+            </LinearLayout>
         </LinearLayout>
 
 

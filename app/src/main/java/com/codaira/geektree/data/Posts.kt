@@ -9,7 +9,7 @@ data class Posts(
     var posttext: String? = "",
     var date: String? = "",
     var time: String? = "",
-    var userid: String? = "",
+    var usernname: String? = "",
     var image: String? = "",
     var postInterestlist: MutableList<String> = mutableListOf()
 ) {

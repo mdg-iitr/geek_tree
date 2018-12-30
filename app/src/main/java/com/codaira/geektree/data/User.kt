@@ -13,6 +13,7 @@ data class User(
     var linkedin: String? = "",
     var branch: String? = "",
     var year: String = "",
-    var interests: Interests? = null
+    var interests: Interests? = null,
+    var dp:String=""
 )
 

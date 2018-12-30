@@ -10,6 +10,7 @@ import com.codaira.geektree.databinding.FragmentDestinationProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import android.widget.TabHost
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -53,30 +54,44 @@ class Profile : Fragment() {
 
         button_edit_branch.setOnClickListener {
             user?.branch=text_branch_profile.text.toString()
-            databaseref.setValue(user)
+            databaseref.setValue(user).addOnSuccessListener {
+                Toast.makeText(activity,"branch updated successfully", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
         button_edit_year.setOnClickListener {
             user?.year=text_year_profile.text.toString()
-            databaseref.setValue(user)
+            databaseref.setValue(user).addOnSuccessListener {
+                Toast.makeText(activity,"year updated successfully", Toast.LENGTH_SHORT).show()
+
+            }
 
         }
 
         button_edit_fb.setOnClickListener {
             user?.fb=text_fb_profile.text.toString()
-            databaseref.setValue(user)
+            databaseref.setValue(user).addOnSuccessListener {
+                Toast.makeText(activity,"fb link updated successfully", Toast.LENGTH_SHORT).show()
+
+            }
 
         }
         button_edit_linkedin.setOnClickListener {
             user?.linkedin=text_linkedin_profile.text.toString()
-            databaseref.setValue(user)
+            databaseref.setValue(user).addOnSuccessListener {
+                Toast.makeText(activity,"linkedin updated successfully", Toast.LENGTH_SHORT).show()
+
+            }
 
         }
 
         button_edit_num.setOnClickListener {
             user?.phoneNumber=text_number_profile.text.toString()
-            databaseref.setValue(user)
+            databaseref.setValue(user).addOnSuccessListener {
+                Toast.makeText(activity,"number updated successfully", Toast.LENGTH_SHORT).show()
+
+            }
 
         }
 

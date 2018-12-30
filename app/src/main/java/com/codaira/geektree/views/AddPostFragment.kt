@@ -59,7 +59,7 @@ class AddPostFragment : Fragment() {
 //            addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
             pLiveData.observe(this,androidx.lifecycle.Observer {
                 var intlist= it.interests
-                recycler_profile_interests?.adapter = ProfileInterestAdapter(intlist)
+                addpost_recycler?.adapter = ProfileInterestAdapter(intlist)
             })
             addpost_recycler.visibility = View.VISIBLE
         }
@@ -95,11 +95,14 @@ class AddPostFragment : Fragment() {
 
 
     private fun addPostToFirebase() {
+        val firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser).child("username")
+
         var post = Posts(
             edit_posttext_post.text.toString(),
             SimpleDateFormat("dd: MM : yyyy").format(Calendar.getInstance().time),
             SimpleDateFormat("HH:mm").format(Calendar.getInstance().time),
-            FirebaseAuth.getInstance().currentUser?.email, url,Posts.postInterest)
+            databaseref.toString(), url,Posts.postInterest)
 
 
         FirebaseDatabase.getInstance().reference.child("posts").push().setValue(post).addOnCompleteListener {

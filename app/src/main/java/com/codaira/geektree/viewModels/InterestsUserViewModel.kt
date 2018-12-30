@@ -16,7 +16,7 @@ import com.google.firebase.database.Query
 
 class InterestsUserViewModel : ViewModel() {
     val firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
-    val databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser).child("interests").child("interests")
+    val databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser).child("interests")
 
     val liveData = FirebaseLiveData(databaseref as Query)
 

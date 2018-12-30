@@ -12,7 +12,12 @@ class HomePostsViewHolder(val customView: View, var posts: Posts? = null) : Recy
         customView.post_date?.text = posts.date
         customView.post_time?.text = posts.time
         customView.post_description?.text = posts.posttext
-        customView.post_user_name?.text = posts.userid
+        customView.post_user_name?.text = posts.usernname
+        var interest:String=""
+        posts.postInterestlist.forEach {
+            interest=interest+it
+        }
 
+        customView.post_int?.text=interest
     }
 }
