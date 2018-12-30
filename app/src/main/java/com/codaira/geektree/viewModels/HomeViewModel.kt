@@ -2,7 +2,7 @@ package com.codaira.geektree.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.codaira.geektree.data.HomeLiveData
+import com.codaira.geektree.data.FirebaseLiveData
 import com.codaira.geektree.data.Posts
 import androidx.lifecycle.Transformations
 import com.codaira.geektree.views.MainActivity.Companion.user
@@ -13,7 +13,7 @@ import com.google.firebase.database.*
 class HomeViewModel : ViewModel() {
     val databaseref = FirebaseDatabase.getInstance().reference.child("posts")
 
-    val liveData = HomeLiveData(databaseref as Query)
+    val liveData = FirebaseLiveData(databaseref as Query)
 
     private val postListLiveData = Transformations.map(liveData, Deserializer())
 

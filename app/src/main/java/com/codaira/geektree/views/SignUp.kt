@@ -58,11 +58,14 @@ class SignUp : Fragment() {
             "Int Msc Physics",
             "Int Msc Chemistry"
         )
+
         val spinnerBranchArrayAdapter = ArrayAdapter<String>(
             activity as Context, android.R.layout.simple_spinner_item, spinnerBranchArray
         ) //selected item will look like a spinner set from XML
         spinnerBranchArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner_branch_signup.setAdapter(spinnerBranchArrayAdapter)
+
+
 
         //setting up spinner_year
         val spinnerYearArray: Array<String> = arrayOf("First", "Second", "Third", "Fourth", "Fifth")
@@ -132,7 +135,7 @@ class SignUp : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        //you need to run this user task to get updated current user status
+        //to get updated current user status
         val userTask = mAuth.currentUser?.reload()
         userTask?.addOnSuccessListener {
             if(mAuth.currentUser?.isEmailVerified!!){

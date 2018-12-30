@@ -10,11 +10,17 @@ import com.codaira.geektree.databinding.FragmentDestinationProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import android.widget.TabHost
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
 import com.codaira.geektree.adapters.ProfileInterestAdapter
+import com.codaira.geektree.data.Interests
+import com.codaira.geektree.data.User
+import com.codaira.geektree.viewModels.InterestsUserViewModel
 import com.codaira.geektree.views.MainActivity.Companion.user
 import kotlinx.android.synthetic.main.fragment_destination_profile.*
 
@@ -30,9 +36,6 @@ class Profile : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_destination_profile, container, false)
         val binding = DataBindingUtil.bind<FragmentDestinationProfileBinding>(view)
-        firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser)
-
         binding?.user=MainActivity.user
         return view
     }
@@ -41,6 +44,12 @@ class Profile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser)
+
+        val profileVModel = ViewModelProviders.of(this).get(InterestsUserViewModel::class.java)
+
+        val pLiveData : LiveData<Interests> = profileVModel.getUserData()
 
         button_edit_branch.setOnClickListener {
             user?.branch=text_branch_profile.text.toString()
@@ -93,7 +102,10 @@ class Profile : Fragment() {
         host.addTab(spec)
 
         recycler_profile_interests?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recycler_profile_interests?.adapter = ProfileInterestAdapter(user?.interests?.interests!!)
+        pLiveData.observe(this, Observer {
+            var intlist= it.interests
+            recycler_profile_interests?.adapter = ProfileInterestAdapter(intlist)
+        })
 
         button_profile_change_interests.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.destination_interests)
