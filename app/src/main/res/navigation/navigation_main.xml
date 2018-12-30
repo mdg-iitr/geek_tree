@@ -4,17 +4,17 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation_main"
             app:startDestination="@id/destination_home">
 
-    <fragment android:id="@+id/destination_login" android:name="com.codaira.geektree.Views.Login" android:label="SignIn"
+    <fragment android:id="@+id/destination_login" android:name="com.codaira.geektree.views.Login" android:label="SignIn"
               tools:layout="@layout/fragment_login">
         <action android:id="@+id/action_login_to_signUp" app:destination="@id/destination_signup"/>
         <action android:id="@+id/action_login_to_interests" app:destination="@id/destination_interests"/>
         <action android:id="@+id/action_login_to_home" app:destination="@id/destination_home"/>
     </fragment>
-    <fragment android:id="@+id/destination_signup" android:name="com.codaira.geektree.Views.SignUp" android:label="SignUp"
+    <fragment android:id="@+id/destination_signup" android:name="com.codaira.geektree.views.SignUp" android:label="SignUp"
               tools:layout="@layout/fragment_sign_up">
         <action android:id="@+id/action_signUp_to_interests" app:destination="@id/destination_interests"/>
     </fragment>
-    <fragment android:id="@+id/destination_home" android:name="com.codaira.geektree.Views.HomeScreen"
+    <fragment android:id="@+id/destination_home" android:name="com.codaira.geektree.views.HomeScreen"
               android:label="Home" tools:layout="@layout/fragment_home_screen">
         <action android:id="@+id/action_destination_home_to_destination_login" app:destination="@+id/destination_login"
                 app:popUpTo="@+id/destination_home"
@@ -25,16 +25,25 @@
                 app:destination="@id/destination_profile"/>
         <action android:id="@+id/action_destination_home_to_destination_pinnedPosts2"
                 app:destination="@id/destination_pinnedPosts"/>
+        <action android:id="@+id/action_destination_home_to_allPosts" app:destination="@id/destination_all_posts"/>
     </fragment>
-    <fragment android:id="@+id/destination_interests" android:name="com.codaira.geektree.Views.InterestsFragment"
+    <fragment android:id="@+id/destination_interests" android:name="com.codaira.geektree.views.InterestsFragment"
               android:label="Choose Your Interests" tools:layout="@layout/fragment_interests">
         <action android:id="@+id/action_interests_to_homeScreen" app:destination="@id/destination_home"/>
     </fragment>
-    <fragment android:id="@+id/destination_profile" android:name="com.codaira.geektree.Views.destination_profile"
+    <fragment android:id="@+id/destination_profile" android:name="com.codaira.geektree.views.Profile"
               android:label="Profile" tools:layout="@layout/fragment_destination_profile"/>
-    <fragment android:id="@+id/destination_addPost" android:name="com.codaira.geektree.Views.AddPostFragment"
+    <fragment android:id="@+id/destination_addPost" android:name="com.codaira.geektree.views.AddPostFragment"
               android:label="Add Post" tools:layout="@layout/fragment_destination_add_post"/>
-    <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.Views.destination_pinnedPosts"
+    <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.views.destination_pinnedPosts"
               android:label="Pinned Posts"
               tools:layout="@layout/fragment_destination_pinned_posts"/>
+    <fragment android:id="@+id/destination_all_posts" android:name="com.codaira.geektree.views.AllPosts"
+              android:label="Select An Interest"
+              tools:layout="@layout/fragment_all_posts"/>
+    <fragment android:name="com.codaira.geektree.views.interestAccPosts"
+              android:label="Posts" tools:layout="@layout/fragment_interest_acc_posts"
+              android:id="@+id/destination_interestAccPosts"/>
+    <fragment android:id="@+id/destination_emailVerification" android:name="com.codaira.geektree.views.EmailVerification"
+              android:label="fragment_email_verification" tools:layout="@layout/fragment_email_verification"/>
 </navigation>

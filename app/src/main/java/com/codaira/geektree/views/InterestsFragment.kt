@@ -1,4 +1,4 @@
-package com.codaira.geektree.Views
+package com.codaira.geektree.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.Models.Interests
-import com.codaira.geektree.Adapters.AllInterestsRecyclerAdapter
+import com.codaira.geektree.data.Interests
+import com.codaira.geektree.adapters.AllInterestsRecyclerAdapter
 import com.codaira.geektree.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -48,9 +48,7 @@ class InterestsFragment : Fragment() {
                 save.addOnCompleteListener {
                     Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
                     val navController = Navigation.findNavController(view)
-                    navController.navigate(R.id.destination_home)
-                    val act  = activity as MainActivity
-                    act.showBootomNav()
+                    navController.navigate(R.id.destination_emailVerification)
                 }.addOnFailureListener {
                     Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
                 }

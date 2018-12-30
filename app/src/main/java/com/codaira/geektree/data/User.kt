@@ -1,9 +1,9 @@
-package com.codaira.geektree.Models
+package com.codaira.geektree.data
 
 //fields of user saved in database
 //firebase data binded to it in mainActivity
 
-class User(
+data class User(
     var email: String? = "",
     var password: String? = "",
     var username: String? = "",
@@ -13,6 +13,7 @@ class User(
     var linkedin: String? = "",
     var branch: String? = "",
     var year: String = "",
-    var interests: Interests? = null
+    var interests: Interests? = null,
+    var dp:String=""
 )
 

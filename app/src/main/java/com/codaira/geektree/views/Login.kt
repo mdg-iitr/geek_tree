@@ -1,4 +1,4 @@
-package com.codaira.geektree.Views
+package com.codaira.geektree.views
 
 import android.os.Bundle
 import android.view.LayoutInflater

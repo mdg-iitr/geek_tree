@@ -1,4 +1,4 @@
-package com.codaira.geektree.Adapters
+package com.codaira.geektree.adapters
 
 //adapter for addPost's interests recycler
 
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
-import com.codaira.geektree.ViewHolders.PostInterestViewHolder
+import com.codaira.geektree.viewHolders.PostInterestViewHolder
 
 class PostInterestAdapter(var postinterestslist: MutableList<String>) :
     RecyclerView.Adapter<PostInterestViewHolder>() {

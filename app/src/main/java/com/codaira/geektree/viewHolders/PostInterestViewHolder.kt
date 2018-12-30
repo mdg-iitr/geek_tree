@@ -1,12 +1,12 @@
-package com.codaira.geektree.ViewHolders
+package com.codaira.geektree.viewHolders
 
 import android.view.View
 import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
-import com.codaira.geektree.Adapters.AllInterestsRecyclerAdapter
+import com.codaira.geektree.data.Posts
 import com.codaira.geektree.R
 
-class AllInterestsRecyclerViewHolder(val itemview: View) : RecyclerView.ViewHolder(itemview) {
+class PostInterestViewHolder(val itemview: View) : RecyclerView.ViewHolder(itemview) {
     lateinit var a: CheckBox
 
     fun setInterestString(interest: String) {
@@ -27,12 +27,11 @@ class AllInterestsRecyclerViewHolder(val itemview: View) : RecyclerView.ViewHold
     }
 
     fun removeItemFromList(s: String) {
-        AllInterestsRecyclerAdapter.temporaryInterestList.remove(s)
+        Posts.postInterest?.remove(s)
     }
 
     fun addItemToList(s: String) {
-        AllInterestsRecyclerAdapter.temporaryInterestList.add(s)
+        Posts.postInterest?.add(s)
     }
 
 }
-
