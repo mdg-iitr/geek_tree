@@ -26,6 +26,8 @@ class HomeAdapter (val list: MutableList<Posts>) : RecyclerView.Adapter<HomePost
     override fun onBindViewHolder(holder: HomePostsViewHolder, position: Int) {
         val post = list.get(position)
         holder.bind(post)
+        var visible=post.selected.toBoolean()
+        holder.customView.heart_button.setLiked(visible)
         val img = holder.customView.post_image
         if (post.image!!.isEmpty()) {
             //do nothing
