@@ -5,25 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
-import com.google.firebase.auth.FirebaseAuth
+import com.codaira.geektree.adapters.PinnedPostAdapter
+import com.codaira.geektree.viewHolders.HomePostsViewHolder
 import kotlinx.android.synthetic.main.fragment_destination_pinned_posts.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [destination_pinnedPosts.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [destination_pinnedPosts.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class destination_pinnedPosts : Fragment() {
 
 
@@ -37,9 +26,11 @@ class destination_pinnedPosts : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        logout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-        }
+        view.findViewById<RecyclerView>(R.id.recycler_pinned).layoutManager =
+                LinearLayoutManager(activity, RecyclerView.VERTICAL, false) // adds recycler in vertical orientation
+        recycler_pinned.adapter=PinnedPostAdapter(HomePostsViewHolder.pinnedPostsList)
+
     }
 }
+
 
