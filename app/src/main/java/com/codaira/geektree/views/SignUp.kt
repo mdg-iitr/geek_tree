@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -37,6 +38,7 @@ class SignUp : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
 
         //setting up spinner_branch
@@ -137,6 +139,13 @@ class SignUp : Fragment() {
 
 
         }
+    }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.profile)
+        menuItem.setVisible(false)
+        val menuI=menu.findItem(R.id.logout)
+        menuI.setVisible(false)
     }
 
 

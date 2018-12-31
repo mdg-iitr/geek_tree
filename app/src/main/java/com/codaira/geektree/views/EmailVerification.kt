@@ -29,7 +29,7 @@ class EmailVerification : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setHasOptionsMenu(true)
         //btn to verify email
         verifyEmail_VerifyEmailFragment.setOnClickListener {
             firebaseAuth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
@@ -37,6 +37,12 @@ class EmailVerification : Fragment() {
                 openEmailApp()
             }
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.profile)
+        menuItem.setVisible(false)
     }
 
     override fun onResume() {
