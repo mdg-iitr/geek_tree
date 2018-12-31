@@ -73,8 +73,11 @@ class Profile : Fragment() {
 
 
        var storageref= FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser)
-        if (!user?.dp?.isEmpty()!!) {
-            Glide.with(context!!).load(storageref).into(profile_img)
+        if(!user?.dp?.isEmpty()!!){
+            storageref.downloadUrl.addOnSuccessListener {
+                var imgurl = it.toString()
+                Picasso.with(context).load(imgurl).into(profile_img)
+            }
         }
 
 
