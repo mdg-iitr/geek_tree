@@ -42,9 +42,9 @@ class Profile : Fragment() {
     lateinit var firebaseUser: String
     lateinit var databaseref: DatabaseReference
     var GalleryPick = 1
-    var imageuri:Uri?=null
-    var resulturi:Uri?=null
-    var url:String?=""
+    var imageuri: Uri? = null
+    var resulturi: Uri? = null
+    var url: String? = ""
 
 
     override fun onCreateView(
@@ -56,10 +56,9 @@ class Profile : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_destination_profile, container, false)
         val binding = DataBindingUtil.bind<FragmentDestinationProfileBinding>(view)
-        binding?.user=MainActivity.user
+        binding?.user = MainActivity.user
         return view
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,7 +66,7 @@ class Profile : Fragment() {
         firebaseUser = FirebaseAuth.getInstance().currentUser?.uid.toString()
         databaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUser)
         val profileVModel = ViewModelProviders.of(this).get(InterestsUserViewModel::class.java)
-        val pLiveData : LiveData<Interests> = profileVModel.getUserData()
+        val pLiveData: LiveData<Interests> = profileVModel.getUserData()
 
         val builder = AlertDialog.Builder(activity)
         val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
@@ -75,8 +74,8 @@ class Profile : Fragment() {
         val dialog = builder.create()
 
 
-       var storageref= FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser)
-        if(!user?.dp?.isEmpty()!!){
+        var storageref = FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser)
+        if (!user?.dp?.isEmpty()!!) {
             storageref.downloadUrl.addOnSuccessListener {
                 var imgurl = it.toString()
                 Picasso.with(context).load(imgurl).into(profile_img)
@@ -87,9 +86,9 @@ class Profile : Fragment() {
 
         button_edit_branch.setOnClickListener {
             dialog.show()
-            user?.branch=text_branch_profile.text.toString()
+            user?.branch = text_branch_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
-                Toast.makeText(activity,"branch updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "branch updated successfully", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
         }
@@ -98,19 +97,19 @@ class Profile : Fragment() {
         button_edit_year.setOnClickListener {
             dialog.show()
 
-            user?.year=text_year_profile.text.toString()
+            user?.year = text_year_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
-                Toast.makeText(activity,"year updated successfully", Toast.LENGTH_SHORT).show()
-dialog.dismiss()
+                Toast.makeText(activity, "year updated successfully", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
             }
 
         }
 
         button_edit_fb.setOnClickListener {
             dialog.show()
-            user?.fb=text_fb_profile.text.toString()
+            user?.fb = text_fb_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
-                Toast.makeText(activity,"fb link updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "fb link updated successfully", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
 
             }
@@ -118,9 +117,9 @@ dialog.dismiss()
         }
         button_edit_linkedin.setOnClickListener {
             dialog.show()
-            user?.linkedin=text_linkedin_profile.text.toString()
+            user?.linkedin = text_linkedin_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
-                Toast.makeText(activity,"linkedin updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "linkedin updated successfully", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
 
             }
@@ -129,9 +128,9 @@ dialog.dismiss()
 
         button_edit_num.setOnClickListener {
             dialog.show()
-            user?.phoneNumber=text_number_profile.text.toString()
+            user?.phoneNumber = text_number_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
-                Toast.makeText(activity,"number updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "number updated successfully", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
         }
@@ -179,9 +178,9 @@ dialog.dismiss()
         spec.setIndicator("Interests")
         host.addTab(spec)
 
-        recycler_profile_interests?.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
+        recycler_profile_interests?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         pLiveData.observe(this, Observer {
-            var intlist= it.interests
+            var intlist = it.interests
             recycler_profile_interests?.adapter = ProfileInterestAdapter(intlist)
         })
 
@@ -191,39 +190,40 @@ dialog.dismiss()
         }
 
     }
+
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         val menuItem = menu.findItem(R.id.profile)
         menuItem.setVisible(false)
     }
-    private fun opengallery() {
 
-        val gallery = Intent()
-        gallery.setAction(Intent.ACTION_GET_CONTENT)
-        gallery.setType("image/*")
-        startActivityForResult(gallery, GalleryPick)
+    private fun opengallery() {
+        CropImage.activity()
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .start(context!!, this)
+        CropImage.activity()
+            .start(context!!, this);
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == GalleryPick && resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
             imageuri = data.data
-            CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).setAspectRatio(1,1).start(context!!,this)
+            CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).setAspectRatio(1, 1).start(context!!, this)
         }
-        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-            var result: CropImage.ActivityResult=CropImage.getActivityResult(data)
-            if (resultCode==RESULT_OK){
-                resulturi=result.uri
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            var result: CropImage.ActivityResult = CropImage.getActivityResult(data)
+            if (resultCode == RESULT_OK) {
+                resulturi = result.uri
                 profile_img.setImageURI(resulturi)
-
 
 
             }
         }
-        }
-
     }
+
+}
 
 
