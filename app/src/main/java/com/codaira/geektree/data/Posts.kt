@@ -11,7 +11,8 @@ data class Posts(
     var time: String? = "",
     var usernname: String? = "",
     var image: String? = "",
-    var postInterestlist: MutableList<String> = mutableListOf()
+    var postInterestlist: MutableList<String> = mutableListOf(),
+    var dp:String?=""
 ) {
     companion object {
         var postInterest = arrayListOf<String>()
