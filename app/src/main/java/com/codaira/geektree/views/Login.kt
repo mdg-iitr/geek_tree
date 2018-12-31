@@ -1,7 +1,9 @@
 package com.codaira.geektree.views
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -25,6 +27,7 @@ class Login : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
 
         proceedToSignUpTextView_SignInFragment.setOnClickListener {
@@ -35,8 +38,22 @@ class Login : Fragment() {
         }
 
     }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.profile)
+        menuItem.setVisible(false)
+        val menuI=menu.findItem(R.id.logout)
+        menuI.setVisible(false)
+    }
+
 
     private fun loginUser() {
+        val builder = AlertDialog.Builder(activity)
+        val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+        builder.setView(progressBar)
+        val dialog = builder.create()
+        dialog.show()
+
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
             editEmail_signInFragment.text.toString(),
@@ -47,7 +64,7 @@ class Login : Fragment() {
             } else {
                 textView_SignInFragment.text = "Enter Correct Details"
             }
-
+            dialog.dismiss()
         }
 
     }

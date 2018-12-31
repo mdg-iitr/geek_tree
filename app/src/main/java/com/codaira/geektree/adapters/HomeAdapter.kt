@@ -29,5 +29,12 @@ class HomeAdapter (val list: MutableList<Posts>) : RecyclerView.Adapter<HomePost
         } else {
             Picasso.with(holder.customView.context).load(post.image).into(img)//loads image into imageholder
         }
+        val dp=holder.customView.post_dp
+        if (post.dp!!.isEmpty()) {
+            //do nothing
+        }
+        else {
+            Picasso.with(holder.customView.context).load(post.dp).into(dp)//loads image into imageholder
+        }
     }
 }

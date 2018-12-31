@@ -15,7 +15,7 @@ class HomePostsViewHolder(val customView: View, var posts: Posts? = null) : Recy
         customView.post_user_name?.text = posts.usernname
         var interest:String=""
         posts.postInterestlist.forEach {
-            interest=interest+it
+            interest=interest + "|" + it
         }
 
         customView.post_int?.text=interest

@@ -1,7 +1,9 @@
 package com.codaira.geektree.views
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -24,6 +26,8 @@ class InterestsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_interests, container, false)
     }
@@ -40,17 +44,25 @@ class InterestsFragment : Fragment() {
 
         button_save_interests.setOnClickListener {view->
 
+
             if (!AllInterestsRecyclerAdapter.temporaryInterestList.isEmpty()) {
                 val interests = Interests(AllInterestsRecyclerAdapter.temporaryInterestList)
-
                 val save = firebasedatabase.setValue(interests)
+
+                val builder = AlertDialog.Builder(activity)
+                val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+                builder.setView(progressBar)
+                val dialog = builder.create()
+                dialog.show()
 
                 save.addOnCompleteListener {
                     Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
                     val navController = Navigation.findNavController(view)
                     navController.navigate(R.id.destination_emailVerification)
+                    dialog.dismiss()
                 }.addOnFailureListener {
                     Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
                 }
             }
             else{
@@ -58,5 +70,10 @@ class InterestsFragment : Fragment() {
 
             }
         }
+    }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.profile)
+        menuItem.setVisible(false)
     }
 }

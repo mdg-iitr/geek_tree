@@ -32,8 +32,8 @@ private fun DataSnapshot.toPostList(): MutableList<Posts>? {
     val list = mutableListOf<Posts>()
     for (snapshot in this.children) {
         val post = snapshot.getValue(Posts::class.java)
-            if(user?.interests?.interests!!.minus(post!!.postInterestlist)== user?.interests?.interests!!) {
-                list.add(post!!)
+            if(!(user?.interests?.interests!!.minus(post!!.postInterestlist)== user?.interests?.interests!!)) {
+                list.add(post)
 
         }
     }

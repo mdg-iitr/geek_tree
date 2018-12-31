@@ -35,11 +35,6 @@ class HomeScreen : Fragment() {
         view.findViewById<RecyclerView>(R.id.homescreen_recycler).layoutManager =
                 LinearLayoutManager(activity, RecyclerView.VERTICAL, false) // adds recycler in vertical orientation
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-
         val homeVModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
         val postLiveData : LiveData<MutableList<Posts>> = homeVModel.getPostList()

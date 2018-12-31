@@ -2,10 +2,12 @@ package com.codaira.geektree.views
 
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -36,6 +38,7 @@ class SignUp : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
 
         //setting up spinner_branch
@@ -77,6 +80,12 @@ class SignUp : Fragment() {
 
 
         button_authenticate_signup.setOnClickListener { view ->
+            val builder = AlertDialog.Builder(activity)
+            val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+            builder.setView(progressBar)
+            val dialog = builder.create()
+            dialog.show()
+
 
             val branch: String = spinner_branch_signup.selectedItem.toString()
             val year: String = spinner_year_signup.selectedItem.toString()
@@ -111,6 +120,7 @@ class SignUp : Fragment() {
                                     Toast.makeText(activity, "Couldn't SignUp please try again.", Toast.LENGTH_SHORT)
                                         .show()
                                 }
+                                dialog.dismiss()
                             }
                         } else {
                             Toast.makeText(
@@ -118,6 +128,7 @@ class SignUp : Fragment() {
                                 "Please enter all details and password must be 6 character long.",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            dialog.dismiss()
                         }
 
 
@@ -128,6 +139,13 @@ class SignUp : Fragment() {
 
 
         }
+    }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.profile)
+        menuItem.setVisible(false)
+        val menuI=menu.findItem(R.id.logout)
+        menuI.setVisible(false)
     }
 
 

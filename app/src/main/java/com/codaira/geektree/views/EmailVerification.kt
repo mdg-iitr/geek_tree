@@ -2,6 +2,7 @@ package com.codaira.geektree.views
 
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -28,7 +29,7 @@ class EmailVerification : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setHasOptionsMenu(true)
         //btn to verify email
         verifyEmail_VerifyEmailFragment.setOnClickListener {
             firebaseAuth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
@@ -38,8 +39,20 @@ class EmailVerification : Fragment() {
         }
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.profile)
+        menuItem.setVisible(false)
+    }
+
     override fun onResume() {
         super.onResume()
+
+        val builder = AlertDialog.Builder(activity)
+        val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+        builder.setView(progressBar)
+        val dialog = builder.create()
+        dialog.show()
 
         //you need to run this user task to get updated current user status
         val userTask = firebaseAuth.currentUser?.reload()
@@ -51,6 +64,7 @@ class EmailVerification : Fragment() {
                 var act=activity as MainActivity
                 act.showBootomNav()
             }
+            dialog.dismiss()
         }
     }
 
