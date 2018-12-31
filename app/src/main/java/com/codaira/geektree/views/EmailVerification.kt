@@ -2,6 +2,7 @@ package com.codaira.geektree.views
 
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -41,6 +42,12 @@ class EmailVerification : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        val builder = AlertDialog.Builder(activity)
+        val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+        builder.setView(progressBar)
+        val dialog = builder.create()
+        dialog.show()
+
         //you need to run this user task to get updated current user status
         val userTask = firebaseAuth.currentUser?.reload()
         userTask?.addOnSuccessListener {
@@ -51,6 +58,7 @@ class EmailVerification : Fragment() {
                 var act=activity as MainActivity
                 act.showBootomNav()
             }
+            dialog.dismiss()
         }
     }
 

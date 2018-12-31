@@ -2,6 +2,7 @@ package com.codaira.geektree.views
 
 import android.app.Activity
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -65,6 +66,11 @@ class Profile : Fragment() {
         val profileVModel = ViewModelProviders.of(this).get(InterestsUserViewModel::class.java)
         val pLiveData : LiveData<Interests> = profileVModel.getUserData()
 
+        val builder = AlertDialog.Builder(activity)
+        val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+        builder.setView(progressBar)
+        val dialog = builder.create()
+
 
        var storageref= FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser)
         if (!user?.dp?.isEmpty()!!) {
@@ -74,43 +80,53 @@ class Profile : Fragment() {
 
 
         button_edit_branch.setOnClickListener {
+            dialog.show()
             user?.branch=text_branch_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
                 Toast.makeText(activity,"branch updated successfully", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
             }
         }
 
 
         button_edit_year.setOnClickListener {
+            dialog.show()
+
             user?.year=text_year_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
                 Toast.makeText(activity,"year updated successfully", Toast.LENGTH_SHORT).show()
-
+dialog.dismiss()
             }
 
         }
 
         button_edit_fb.setOnClickListener {
+            dialog.show()
             user?.fb=text_fb_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
                 Toast.makeText(activity,"fb link updated successfully", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
 
             }
 
         }
         button_edit_linkedin.setOnClickListener {
+            dialog.show()
             user?.linkedin=text_linkedin_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
                 Toast.makeText(activity,"linkedin updated successfully", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
 
             }
 
         }
 
         button_edit_num.setOnClickListener {
+            dialog.show()
             user?.phoneNumber=text_number_profile.text.toString()
             databaseref.setValue(user).addOnSuccessListener {
                 Toast.makeText(activity,"number updated successfully", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
             }
         }
         profile_img.setOnClickListener {
@@ -118,6 +134,7 @@ class Profile : Fragment() {
         }
 
         button_dp.setOnClickListener {
+            dialog.show()
 
             var uploadTask =
                 FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser).putFile(
@@ -132,8 +149,10 @@ class Profile : Fragment() {
                     url = it.toString()
                     Toast.makeText(activity, "Profile Picture added successfully", Toast.LENGTH_LONG).show()
                     databaseref.child("dp").setValue(url)
+                    dialog.dismiss()
                 }.addOnFailureListener {
                     Toast.makeText(activity, "Profile Picture NOT added", Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
                 }
             }
 

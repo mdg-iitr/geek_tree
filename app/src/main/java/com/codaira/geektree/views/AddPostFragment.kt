@@ -2,6 +2,7 @@ package com.codaira.geektree.views
 
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.os.Bundle
 import android.content.Intent
 import android.net.Uri
@@ -37,6 +38,7 @@ class AddPostFragment : Fragment() {
     var url: String? = ""
     var imageuri: Uri? = null
     var GalleryPick = 1
+    lateinit var dialog: AlertDialog
 
 
     override fun onCreateView(
@@ -88,14 +90,20 @@ class AddPostFragment : Fragment() {
 
 
     private fun addpost() {
+        val builder = AlertDialog.Builder(activity)
+        val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+        builder.setView(progressBar)
+        dialog = builder.create()
 
         if (imageuri != null && !isEmpty(edit_posttext_post.text.toString())) {
+            dialog.show()
             storeImageToFirebase() //stores image to storage and then updates on database
         }
 
         if (isEmpty(edit_posttext_post.text.toString())) {
             Toast.makeText(activity, "Please Enter Text", Toast.LENGTH_LONG).show()
         } else if (imageuri == null) {
+            dialog.show()
             addPostToFirebase() //if no image added, updates text post to database
         }
 
@@ -114,8 +122,12 @@ class AddPostFragment : Fragment() {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Post added successfully", Toast.LENGTH_LONG).show()
                 addpost_recycler.visibility = View.GONE
+                dialog.dismiss()
+
             } else {
                 Toast.makeText(activity, "Post NOT added", Toast.LENGTH_LONG).show()
+                dialog.dismiss()
+
             }
         }
     }
@@ -139,6 +151,7 @@ class AddPostFragment : Fragment() {
                 Toast.makeText(activity, "Media added successfully", Toast.LENGTH_LONG).show()
                 addPostToFirebase()
             }.addOnFailureListener {
+                dialog.dismiss()
                 Toast.makeText(activity, "Media NOT added", Toast.LENGTH_LONG).show()
 
             }

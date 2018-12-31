@@ -1,5 +1,6 @@
 package com.codaira.geektree.views
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,17 +41,25 @@ class InterestsFragment : Fragment() {
 
         button_save_interests.setOnClickListener {view->
 
+
             if (!AllInterestsRecyclerAdapter.temporaryInterestList.isEmpty()) {
                 val interests = Interests(AllInterestsRecyclerAdapter.temporaryInterestList)
-
                 val save = firebasedatabase.setValue(interests)
+
+                val builder = AlertDialog.Builder(activity)
+                val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+                builder.setView(progressBar)
+                val dialog = builder.create()
+                dialog.show()
 
                 save.addOnCompleteListener {
                     Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
                     val navController = Navigation.findNavController(view)
                     navController.navigate(R.id.destination_emailVerification)
+                    dialog.dismiss()
                 }.addOnFailureListener {
                     Toast.makeText(activity, "Interests have NOT been saved", Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
                 }
             }
             else{

@@ -1,5 +1,6 @@
 package com.codaira.geektree.views
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,12 @@ class Login : Fragment() {
     }
 
     private fun loginUser() {
+        val builder = AlertDialog.Builder(activity)
+        val progressBar: View = layoutInflater.inflate(R.layout.progress, null)
+        builder.setView(progressBar)
+        val dialog = builder.create()
+        dialog.show()
+
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
             editEmail_signInFragment.text.toString(),
@@ -47,7 +54,7 @@ class Login : Fragment() {
             } else {
                 textView_SignInFragment.text = "Enter Correct Details"
             }
-
+            dialog.dismiss()
         }
 
     }
