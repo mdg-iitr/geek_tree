@@ -116,7 +116,7 @@ class AddPostFragment : Fragment() {
         var post = Posts(
             edit_posttext_post.text.toString(),
             SimpleDateFormat("dd: MM : yyyy").format(Calendar.getInstance().time),
-            SimpleDateFormat("HH:mm").format(Calendar.getInstance().time), user?.username, url,Posts.postInterest,user?.dp,"false",taskkey!!)
+            SimpleDateFormat("HH:mm").format(Calendar.getInstance().time), user?.username, url,Posts.postInterest,user?.dp,taskkey!!)
 
 
         FirebaseDatabase.getInstance().reference.child("posts").child(taskkey!!).setValue(post).addOnCompleteListener {

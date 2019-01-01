@@ -3,10 +3,14 @@ package com.codaira.geektree.viewHolders
 //ViewHolder for posts shown on homeScreen
 
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.data.Posts
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.post_layout.view.*
 import com.like.LikeButton
 import com.like.OnLikeListener
@@ -17,10 +21,29 @@ class HomePostsViewHolder(val customView: View, var posts: Posts? = null) : Recy
     fun bind(posts: Posts) {
         var firebaseuser = FirebaseAuth.getInstance().currentUser?.uid.toString()
         var firebaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseuser).child("likedPosts")
-        var key=  firebaseref.push().key
+
+        firebaseref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if(p0.hasChild(posts.taskkey)){
+                    customView.heart_button.setLiked(true)
+                }
+                else{
+                    customView.heart_button.setLiked(false)
+                }
+
+            }
 
 
-        var listLikedPosts: MutableList<Posts> = mutableListOf()
+        }
+
+        )
+            customView.heart_button.setLiked(true)
+
+
         customView.post_date?.text = posts.date
         customView.post_time?.text = posts.time
         customView.post_description?.text = posts.posttext
@@ -32,26 +55,19 @@ class HomePostsViewHolder(val customView: View, var posts: Posts? = null) : Recy
 
         customView.post_int?.text = interest
 
-        customView.heart_button.setOnLikeListener(object : OnLikeListener {
+        customView.heart_button.setOnClickListener {
+            if (it.heart_button.isLiked){
 
-            override fun liked(likeButton: LikeButton) {
-                posts.selected="true"
-                FirebaseDatabase.getInstance().reference.child("posts").child(posts.taskkey).setValue(posts)
-                firebaseref.child(key!!).setValue(posts)
-
-
-
+                it.heart_button.setLiked(false)
+                firebaseref.child(posts.taskkey).removeValue()
             }
+            else{
 
-            override fun unLiked(likeButton: LikeButton) {
-                posts.selected="false"
-                FirebaseDatabase.getInstance().reference.child("posts").child(posts.taskkey).setValue(posts)
-                firebaseref.child(key!!).removeValue()
+                it.heart_button.setLiked(true)
+                firebaseref.child(posts.taskkey).setValue(posts)
             }
-        })
+        }
     }
-
-
 }
 
 

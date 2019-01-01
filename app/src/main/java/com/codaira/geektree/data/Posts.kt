@@ -15,7 +15,6 @@ data class Posts(
     var image: String? = "",
     var postInterestlist: MutableList<String> = mutableListOf(),
     var dp:String?="",
-    var selected: String="",
     var taskkey:String=""
 ) {
     companion object {
