@@ -111,14 +111,15 @@ class AddPostFragment : Fragment() {
 
 
     private fun addPostToFirebase() {
+        var taskkey= FirebaseDatabase.getInstance().reference.child("posts").push().key
 
         var post = Posts(
             edit_posttext_post.text.toString(),
             SimpleDateFormat("dd: MM : yyyy").format(Calendar.getInstance().time),
-            SimpleDateFormat("HH:mm").format(Calendar.getInstance().time), user?.username, url,Posts.postInterest,user?.dp)
+            SimpleDateFormat("HH:mm").format(Calendar.getInstance().time), user?.username, url,Posts.postInterest,user?.dp,taskkey!!)
 
 
-        FirebaseDatabase.getInstance().reference.child("posts").push().setValue(post).addOnCompleteListener {
+        FirebaseDatabase.getInstance().reference.child("posts").child(taskkey!!).setValue(post).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Post added successfully", Toast.LENGTH_LONG).show()
                 addpost_recycler.visibility = View.GONE

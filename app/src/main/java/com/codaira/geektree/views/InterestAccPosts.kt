@@ -19,7 +19,7 @@ import com.codaira.geektree.viewModels.*
 import kotlinx.android.synthetic.main.fragment_interest_acc_posts.*
 
 
-class interestAccPosts : Fragment() {
+class InterestAccPosts : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

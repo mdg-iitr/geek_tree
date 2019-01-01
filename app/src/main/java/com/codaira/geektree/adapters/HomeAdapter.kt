@@ -11,6 +11,9 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.post_layout.view.*
 
 class HomeAdapter (val list: MutableList<Posts>) : RecyclerView.Adapter<HomePostsViewHolder>() {
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):HomePostsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_layout, parent, false)
         return HomePostsViewHolder(view)
@@ -23,6 +26,7 @@ class HomeAdapter (val list: MutableList<Posts>) : RecyclerView.Adapter<HomePost
     override fun onBindViewHolder(holder: HomePostsViewHolder, position: Int) {
         val post = list.get(position)
         holder.bind(post)
+
         val img = holder.customView.post_image
         if (post.image!!.isEmpty()) {
             //do nothing
