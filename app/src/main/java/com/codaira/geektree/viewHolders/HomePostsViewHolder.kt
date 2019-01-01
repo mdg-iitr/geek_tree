@@ -55,18 +55,18 @@ class HomePostsViewHolder(val customView: View, var posts: Posts? = null) : Recy
 
         customView.post_int?.text = interest
 
-        customView.heart_button.setOnClickListener {
-            if (it.heart_button.isLiked){
+        customView.heart_button.setOnLikeListener(object: OnLikeListener{
+            override fun liked(p0: LikeButton?) {
+                firebaseref.child(posts.taskkey).setValue(posts)
 
-                it.heart_button.setLiked(false)
+            }
+
+            override fun unLiked(p0: LikeButton?) {
+                p0?.setLiked(false)
                 firebaseref.child(posts.taskkey).removeValue()
             }
-            else{
 
-                it.heart_button.setLiked(true)
-                firebaseref.child(posts.taskkey).setValue(posts)
-            }
-        }
+        })
     }
 }
 
