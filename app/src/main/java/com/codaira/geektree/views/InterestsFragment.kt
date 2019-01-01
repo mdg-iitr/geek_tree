@@ -55,6 +55,13 @@ class InterestsFragment : Fragment() {
                 val dialog = builder.create()
                 dialog.show()
 
+
+                AllInterestsRecyclerAdapter.temporaryInterestList.forEach {
+                    FirebaseDatabase.getInstance().reference.child("interests").child(it).child(FirebaseAuth.getInstance().currentUser?.uid.toString()).setValue(MainActivity.user?.username)
+                }
+
+
+
                 save.addOnCompleteListener {
                     Toast.makeText(activity, "Interests have been saved", Toast.LENGTH_LONG).show()
                     val navController = Navigation.findNavController(view)
