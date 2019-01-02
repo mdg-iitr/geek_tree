@@ -47,4 +47,6 @@
     <fragment android:id="@+id/destination_emailVerification"
               android:name="com.codaira.geektree.views.EmailVerification"
               android:label="Verify YourEmailId" tools:layout="@layout/fragment_email_verification"/>
+    <fragment android:id="@+id/destination_profileOthers" android:name="com.codaira.geektree.views.ProfileOthers"
+              android:label="Profile" tools:layout="@layout/fragment_profile_others"/>
 </navigation>

@@ -74,7 +74,7 @@ class Profile : Fragment() {
         val dialog = builder.create()
 
 
-        var storageref = FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser)
+        var storageref = FirebaseStorage.getInstance().reference.child("profilePictures").child(user?.username!!)
         if (!user?.dp?.isEmpty()!!) {
             storageref.downloadUrl.addOnSuccessListener {
                 var imgurl = it.toString()
@@ -142,13 +142,13 @@ class Profile : Fragment() {
             dialog.show()
 
             var uploadTask =
-                FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser).putFile(
+                FirebaseStorage.getInstance().reference.child("profilePictures").child(user?.username!!).putFile(
                     resulturi!!
                 )
 
 
             uploadTask.addOnSuccessListener {
-                FirebaseStorage.getInstance().reference.child("profilePictures").child(firebaseUser)
+                FirebaseStorage.getInstance().reference.child("profilePictures").child(user?.username!!)
                     .downloadUrl.addOnSuccessListener {
                     //to get download url of image
                     url = it.toString()

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
 import com.codaira.geektree.adapters.AllPostAdapter
 import com.codaira.geektree.adapters.HomeAdapter
-import com.codaira.geektree.adapters.ProfileInterestAdapter
+import com.codaira.geektree.adapters.IntAccUserRecyclerAdapter
 import com.codaira.geektree.data.Posts
 import com.codaira.geektree.viewModels.*
 import kotlinx.android.synthetic.main.fragment_interest_acc_posts.*
@@ -60,7 +60,7 @@ class InterestAccPosts : Fragment() {
                 var b=ViewModelProviders.of(this).get(UsersPhotographyViewModel::class.java)
                 val liveData:LiveData<MutableList<String>> = b.getUserList()
                 liveData.observe(this, Observer {
-                    recycler_users_interest.adapter = ProfileInterestAdapter(it)
+                    recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
             "Android Development" -> { var a=ViewModelProviders.of(this).get(ADviewModel::class.java)
@@ -71,7 +71,7 @@ class InterestAccPosts : Fragment() {
             var b=ViewModelProviders.of(this).get(UsersADViewModel::class.java)
             val liveData:LiveData<MutableList<String>> = b.getUserList()
             liveData.observe(this, Observer {
-                recycler_users_interest.adapter = ProfileInterestAdapter(it)
+                recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
             })
             }
             "Web development" -> {var a=ViewModelProviders.of(this).get(WebDviewModel::class.java)
@@ -82,7 +82,7 @@ class InterestAccPosts : Fragment() {
                 var b=ViewModelProviders.of(this).get(UsersWebDviewModel::class.java)
                 val liveData:LiveData<MutableList<String>> = b.getUserList()
                 liveData.observe(this, Observer {
-                    recycler_users_interest.adapter = ProfileInterestAdapter(it)
+                    recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
             "Designing" -> { var a=ViewModelProviders.of(this).get(DesigningviewModel::class.java)
@@ -93,7 +93,7 @@ class InterestAccPosts : Fragment() {
                 var b=ViewModelProviders.of(this).get(UsersDesigningViewModel::class.java)
                 val liveData:LiveData<MutableList<String>> = b.getUserList()
                 liveData.observe(this, Observer {
-                    recycler_users_interest.adapter = ProfileInterestAdapter(it)
+                    recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
             "Machine Learning" -> { var a=ViewModelProviders.of(this).get(MLviewModel::class.java)
@@ -104,7 +104,7 @@ class InterestAccPosts : Fragment() {
                 var b=ViewModelProviders.of(this).get(UsersMLviewModel::class.java)
                 val liveData:LiveData<MutableList<String>> = b.getUserList()
                 liveData.observe(this, Observer {
-                    recycler_users_interest.adapter = ProfileInterestAdapter(it)
+                    recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
             "Virtual Reality" -> {var a=ViewModelProviders.of(this).get(VRviewModel::class.java)
@@ -115,7 +115,7 @@ class InterestAccPosts : Fragment() {
                 var b=ViewModelProviders.of(this).get(UsersVRviewModel::class.java)
                 val liveData:LiveData<MutableList<String>> = b.getUserList()
                 liveData.observe(this, Observer {
-                    recycler_users_interest.adapter = ProfileInterestAdapter(it)
+                    recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
         }
