@@ -7,10 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.codaira.geektree.data.FirebaseLiveData
 import com.codaira.geektree.data.Posts
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 
-class ADviewModel : ViewModel() {
+class ADviewModel() : ViewModel() {
     val databaseref = FirebaseDatabase.getInstance().reference.child("posts")
 
     val liveData = FirebaseLiveData(databaseref as Query)
