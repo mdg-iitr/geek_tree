@@ -10,7 +10,7 @@ import androidx.arch.core.util.Function
 import com.google.firebase.database.*
 
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel() : ViewModel() {
     val databaseref = FirebaseDatabase.getInstance().reference.child("posts")
 
     val liveData = FirebaseLiveData(databaseref as Query)

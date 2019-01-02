@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.data.Interests
 import com.codaira.geektree.adapters.AllInterestsRecyclerAdapter
 import com.codaira.geektree.R
+import com.codaira.geektree.data.UserName
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -57,7 +58,8 @@ class InterestsFragment : Fragment() {
 
 
                 AllInterestsRecyclerAdapter.temporaryInterestList.forEach {
-                    FirebaseDatabase.getInstance().reference.child("interests").child(it).child(FirebaseAuth.getInstance().currentUser?.uid.toString()).setValue(MainActivity.user?.username)
+                    var userinfo=UserName(MainActivity.user?.username!!,FirebaseAuth.getInstance().currentUser?.uid.toString())
+                    FirebaseDatabase.getInstance().reference.child("interests").child(it).child(FirebaseAuth.getInstance().currentUser?.uid.toString()).setValue(userinfo)
                 }
 
 

@@ -17,6 +17,7 @@ import com.codaira.geektree.adapters.AllPostAdapter
 import com.codaira.geektree.adapters.HomeAdapter
 import com.codaira.geektree.adapters.IntAccUserRecyclerAdapter
 import com.codaira.geektree.data.Posts
+import com.codaira.geektree.data.UserName
 import com.codaira.geektree.viewModels.*
 import kotlinx.android.synthetic.main.fragment_interest_acc_posts.*
 
@@ -33,7 +34,7 @@ class InterestAccPosts : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler_intaccposts?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recycler_users_interest?.layoutManager=LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
+        recycler_users_interest?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
         val host = view.findViewById(R.id.tabhost_interest) as TabHost
         host.setup()
@@ -50,70 +51,76 @@ class InterestAccPosts : Fragment() {
         spec.setIndicator("Users")
         host.addTab(spec)
 
-        when(AllPostAdapter.queryCondition){
+        when (AllPostAdapter.queryCondition) {
 
-            "Photography" -> { var a = ViewModelProviders.of(this).get(PhotographyViewModel::class.java)
-                val postLiveData : LiveData<MutableList<Posts>> = a.getPostList()
+            "Photography" -> {
+                var a = ViewModelProviders.of(this).get(PhotographyViewModel::class.java)
+                val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b=ViewModelProviders.of(this).get(UsersPhotographyViewModel::class.java)
-                val liveData:LiveData<MutableList<String>> = b.getUserList()
+                var b = ViewModelProviders.of(this).get(UsersPhotographyViewModel::class.java)
+                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
                 liveData.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
-            "Android Development" -> { var a=ViewModelProviders.of(this).get(ADviewModel::class.java)
-                val postLiveData : LiveData<MutableList<Posts>> = a.getPostList()
+            "Android Development" -> {
+                var a = ViewModelProviders.of(this).get(ADviewModel::class.java)
+                val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-            var b=ViewModelProviders.of(this).get(UsersADViewModel::class.java)
-            val liveData:LiveData<MutableList<String>> = b.getUserList()
-            liveData.observe(this, Observer {
-                recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
-            })
-            }
-            "Web development" -> {var a=ViewModelProviders.of(this).get(WebDviewModel::class.java)
-                val postLiveData : LiveData<MutableList<Posts>> = a.getPostList()
-                postLiveData.observe(this, Observer {
-                    recycler_intaccposts.adapter = HomeAdapter(it)
-                })
-                var b=ViewModelProviders.of(this).get(UsersWebDviewModel::class.java)
-                val liveData:LiveData<MutableList<String>> = b.getUserList()
+                var b = ViewModelProviders.of(this).get(UsersADViewModel::class.java)
+                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
                 liveData.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
-            "Designing" -> { var a=ViewModelProviders.of(this).get(DesigningviewModel::class.java)
-                val postLiveData : LiveData<MutableList<Posts>> = a.getPostList()
+            "Web development" -> {
+                var a = ViewModelProviders.of(this).get(WebDviewModel::class.java)
+                val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b=ViewModelProviders.of(this).get(UsersDesigningViewModel::class.java)
-                val liveData:LiveData<MutableList<String>> = b.getUserList()
+                var b = ViewModelProviders.of(this).get(UsersWebDviewModel::class.java)
+                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
                 liveData.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
-            "Machine Learning" -> { var a=ViewModelProviders.of(this).get(MLviewModel::class.java)
-                val postLiveData : LiveData<MutableList<Posts>> = a.getPostList()
+            "Designing" -> {
+                var a = ViewModelProviders.of(this).get(DesigningviewModel::class.java)
+                val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b=ViewModelProviders.of(this).get(UsersMLviewModel::class.java)
-                val liveData:LiveData<MutableList<String>> = b.getUserList()
+                var b = ViewModelProviders.of(this).get(UsersDesigningViewModel::class.java)
+                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
                 liveData.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
-            "Virtual Reality" -> {var a=ViewModelProviders.of(this).get(VRviewModel::class.java)
-                val postLiveData : LiveData<MutableList<Posts>> = a.getPostList()
+            "Machine Learning" -> {
+                var a = ViewModelProviders.of(this).get(MLviewModel::class.java)
+                val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b=ViewModelProviders.of(this).get(UsersVRviewModel::class.java)
-                val liveData:LiveData<MutableList<String>> = b.getUserList()
+                var b = ViewModelProviders.of(this).get(UsersMLviewModel::class.java)
+                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
+                liveData.observe(this, Observer {
+                    recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
+                })
+            }
+            "Virtual Reality" -> {
+                var a = ViewModelProviders.of(this).get(VRviewModel::class.java)
+                val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
+                postLiveData.observe(this, Observer {
+                    recycler_intaccposts.adapter = HomeAdapter(it)
+                })
+                var b = ViewModelProviders.of(this).get(UsersVRviewModel::class.java)
+                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
                 liveData.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })

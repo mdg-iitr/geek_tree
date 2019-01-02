@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
+import com.codaira.geektree.data.UserName
 import com.codaira.geektree.viewHolders.IntAccUsersViewHolder
 
-class IntAccUserRecyclerAdapter(var interestslist: MutableList<String>) :
+class IntAccUserRecyclerAdapter(var interestslist: MutableList<UserName?>) :
     RecyclerView.Adapter<IntAccUsersViewHolder>() {
     companion object {
         var userCondition:String=""
@@ -15,6 +16,7 @@ class IntAccUserRecyclerAdapter(var interestslist: MutableList<String>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntAccUsersViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.interests_profile_layout, parent, false)
         return IntAccUsersViewHolder(v)
+
     }
 
     override fun getItemCount(): Int {
@@ -22,7 +24,7 @@ class IntAccUserRecyclerAdapter(var interestslist: MutableList<String>) :
     }
 
     override fun onBindViewHolder(holder: IntAccUsersViewHolder, position: Int) {
-        val interest: String = interestslist[position]
-        holder.setInterestString(interest)
+        val interest= interestslist.get(position)
+       holder.bind(interest!!)
     }
 }

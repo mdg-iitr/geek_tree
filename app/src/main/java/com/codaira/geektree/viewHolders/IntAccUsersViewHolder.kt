@@ -6,18 +6,17 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.codaira.geektree.R
 import com.codaira.geektree.adapters.IntAccUserRecyclerAdapter
+import com.codaira.geektree.data.UserName
 import kotlinx.android.synthetic.main.interests_profile_layout.view.*
 
-class IntAccUsersViewHolder(val customView: View) : RecyclerView.ViewHolder(customView) {
+class IntAccUsersViewHolder(val customView: View, var userName:UserName?=null) : RecyclerView.ViewHolder(customView) {
 lateinit var a:TextView
-    fun setInterestString(interest: String) {
+    fun bind(userName: UserName) {
         a = customView.findViewById<TextView>(R.id.text_profile_interest)
-        a.setText(interest)
-    }
+        a.text = userName.username
 
-    init {
        customView.setOnClickListener {
-           IntAccUserRecyclerAdapter.userCondition=it.text_profile_interest.text.toString()
+           IntAccUserRecyclerAdapter.userCondition=userName.uid
            Navigation.findNavController(it).navigate(R.id.destination_profileOthers)
        }
 
