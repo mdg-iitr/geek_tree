@@ -11,7 +11,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Query
 
 
-class IntAccUserViewModel(var dbref:DatabaseReference) : ViewModel() {
+class IntAccUserViewModel(dbref:DatabaseReference) : ViewModel() {
 
     val liveData = FirebaseLiveData(dbref as Query)
 

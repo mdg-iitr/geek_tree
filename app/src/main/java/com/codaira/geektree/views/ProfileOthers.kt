@@ -42,10 +42,10 @@ class ProfileOthers : Fragment() {
             text_username_p.text = a?.username
 
 
-            var storageref = FirebaseStorage.getInstance().reference.child("profilePictures").child(a.username!!)
-            if (!a.dp.isEmpty()!!) {
+            val storageref = FirebaseStorage.getInstance().reference.child("profilePictures").child(a.username!!)
+            if (!a.dp.isEmpty()) {
                 storageref.downloadUrl.addOnSuccessListener {
-                    var imgurl = it.toString()
+                    val imgurl = it.toString()
                     Picasso.with(context).load(imgurl).into(p_img)
                 }
             }

@@ -42,7 +42,7 @@ class EmailVerification : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         val menuItem = menu.findItem(R.id.profile)
-        menuItem.setVisible(false)
+        menuItem.isVisible = false
     }
 
     override fun onResume() {

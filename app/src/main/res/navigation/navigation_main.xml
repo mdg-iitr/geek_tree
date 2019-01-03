@@ -36,7 +36,7 @@
               android:label="Profile" tools:layout="@layout/fragment_destination_profile"/>
     <fragment android:id="@+id/destination_addPost" android:name="com.codaira.geektree.views.AddPostFragment"
               android:label="Add Post" tools:layout="@layout/fragment_destination_add_post"/>
-    <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.views.destination_pinnedPosts"
+    <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.views.PinnedPosts"
               android:label="Pinned Posts"
               tools:layout="@layout/fragment_destination_pinned_posts"/>
     <fragment android:id="@+id/destination_all_posts" android:name="com.codaira.geektree.views.AllPosts"

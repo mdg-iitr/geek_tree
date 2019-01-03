@@ -62,7 +62,7 @@ class AddPostFragment : Fragment() {
             addpost_recycler?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 //            addpost_recycler?.adapter = PostInterestAdapter(MainActivity.user?.interests?.interests!!)
             pLiveData.observe(this,androidx.lifecycle.Observer {
-                var intlist= it.interests
+                val intlist= it.interests
                 addpost_recycler?.adapter = PostInterestAdapter(intlist)
             })
             addpost_recycler.visibility = View.VISIBLE
@@ -111,15 +111,15 @@ class AddPostFragment : Fragment() {
 
 
     private fun addPostToFirebase() {
-        var taskkey= FirebaseDatabase.getInstance().reference.child("posts").push().key
+        val taskkey= FirebaseDatabase.getInstance().reference.child("posts").push().key
 
-        var post = Posts(
+        val post = Posts(
             edit_posttext_post.text.toString(),
             SimpleDateFormat("dd: MM : yyyy").format(Calendar.getInstance().time),
             SimpleDateFormat("HH:mm").format(Calendar.getInstance().time), user?.username, url,Posts.postInterest,user?.dp,taskkey!!)
 
 
-        FirebaseDatabase.getInstance().reference.child("posts").child(taskkey!!).setValue(post).addOnCompleteListener {
+        FirebaseDatabase.getInstance().reference.child("posts").child(taskkey).setValue(post).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(activity, "Post added successfully", Toast.LENGTH_LONG).show()
                 addpost_recycler.visibility = View.GONE
@@ -135,11 +135,11 @@ class AddPostFragment : Fragment() {
 
 
     private fun storeImageToFirebase() {
-        var postid =
+        val postid =
             FirebaseAuth.getInstance().currentUser?.uid.toString() + SimpleDateFormat("HH:mm").format(Calendar.getInstance().time) + SimpleDateFormat(
                 "dd: MM : yyyy"
             ).format(Calendar.getInstance().time)
-        var uploadTask = FirebaseStorage.getInstance().reference.child("postImages").child(postid).putFile(
+        val uploadTask = FirebaseStorage.getInstance().reference.child("postImages").child(postid).putFile(
             imageuri!!
         )
 

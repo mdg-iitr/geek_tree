@@ -41,9 +41,9 @@ class Login : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         val menuItem = menu.findItem(R.id.profile)
-        menuItem.setVisible(false)
+        menuItem.isVisible = false
         val menuI=menu.findItem(R.id.logout)
-        menuI.setVisible(false)
+        menuI.isVisible = false
     }
 
 

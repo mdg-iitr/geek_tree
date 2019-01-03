@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModel
 import com.codaira.geektree.data.FirebaseLiveData
 import com.codaira.geektree.data.UserName
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 
-class UsersDesigningViewModel : ViewModel() {
-    val databaseref = FirebaseDatabase.getInstance().reference.child("interests").child("Android Development")
+class UserViewModel(dbref:DatabaseReference) : ViewModel() {
 
-    val liveData = FirebaseLiveData(databaseref as Query)
+    val liveData = FirebaseLiveData(dbref as Query)
 
     private val ListLiveData = Transformations.map(liveData, Deserializer())
 
@@ -31,7 +31,7 @@ class UsersDesigningViewModel : ViewModel() {
 private fun DataSnapshot.toUserList(): MutableList<UserName?> {
     val list = mutableListOf<UserName?>()
     for (snapshot in this.children) {
-        var info=snapshot.getValue(UserName::class.java)
+        val info=snapshot.getValue(UserName::class.java)
         list.add(info)
     }
     return list

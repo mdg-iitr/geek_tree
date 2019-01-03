@@ -33,7 +33,7 @@ private fun DataSnapshot.toPostList(): MutableList<Posts>? {
     for (snapshot in this.children) {
         val post = snapshot.getValue(Posts::class.java)
         if((post!!.postInterestlist).contains("Virtual Reality")) {
-            list.add(post!!)
+            list.add(post)
 
         }
     }

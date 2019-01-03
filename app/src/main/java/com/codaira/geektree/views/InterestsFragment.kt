@@ -58,7 +58,7 @@ class InterestsFragment : Fragment() {
 
 
                 AllInterestsRecyclerAdapter.temporaryInterestList.forEach {
-                    var userinfo=UserName(MainActivity.user?.username!!,FirebaseAuth.getInstance().currentUser?.uid.toString())
+                    val userinfo=UserName(MainActivity.user?.username!!,FirebaseAuth.getInstance().currentUser?.uid.toString())
                     FirebaseDatabase.getInstance().reference.child("interests").child(it).child(FirebaseAuth.getInstance().currentUser?.uid.toString()).setValue(userinfo)
                 }
 

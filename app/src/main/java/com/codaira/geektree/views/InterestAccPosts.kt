@@ -19,6 +19,7 @@ import com.codaira.geektree.adapters.IntAccUserRecyclerAdapter
 import com.codaira.geektree.data.Posts
 import com.codaira.geektree.data.UserName
 import com.codaira.geektree.viewModels.*
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_interest_acc_posts.*
 
 
@@ -54,14 +55,14 @@ class InterestAccPosts : Fragment() {
         when (AllPostAdapter.queryCondition) {
 
             "Photography" -> {
-                var a = ViewModelProviders.of(this).get(PhotographyViewModel::class.java)
+                val a = ViewModelProviders.of(this).get(PhotographyViewModel::class.java)
                 val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b = ViewModelProviders.of(this).get(UsersPhotographyViewModel::class.java)
-                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
-                liveData.observe(this, Observer {
+                val viewmodel : UserViewModel = UserViewModel(FirebaseDatabase.getInstance().reference.child("interests").child("Photography"))
+                val livedata = viewmodel.getUserList()
+                livedata.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
@@ -71,9 +72,9 @@ class InterestAccPosts : Fragment() {
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b = ViewModelProviders.of(this).get(UsersADViewModel::class.java)
-                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
-                liveData.observe(this, Observer {
+                val viewmodel : UserViewModel = UserViewModel(FirebaseDatabase.getInstance().reference.child("interests").child("Android Development"))
+                val livedata = viewmodel.getUserList()
+                livedata.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
@@ -83,9 +84,9 @@ class InterestAccPosts : Fragment() {
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b = ViewModelProviders.of(this).get(UsersWebDviewModel::class.java)
-                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
-                liveData.observe(this, Observer {
+                val viewmodel : UserViewModel = UserViewModel(FirebaseDatabase.getInstance().reference.child("interests").child("Web Development"))
+                val livedata = viewmodel.getUserList()
+                livedata.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
@@ -95,9 +96,9 @@ class InterestAccPosts : Fragment() {
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b = ViewModelProviders.of(this).get(UsersDesigningViewModel::class.java)
-                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
-                liveData.observe(this, Observer {
+                val viewmodel : UserViewModel = UserViewModel(FirebaseDatabase.getInstance().reference.child("interests").child("Designing"))
+                val livedata = viewmodel.getUserList()
+                livedata.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
@@ -107,9 +108,9 @@ class InterestAccPosts : Fragment() {
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b = ViewModelProviders.of(this).get(UsersMLviewModel::class.java)
-                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
-                liveData.observe(this, Observer {
+                val viewmodel : UserViewModel = UserViewModel(FirebaseDatabase.getInstance().reference.child("interests").child("Machine Learning"))
+                val livedata = viewmodel.getUserList()
+                livedata.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }
@@ -119,9 +120,9 @@ class InterestAccPosts : Fragment() {
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
                 })
-                var b = ViewModelProviders.of(this).get(UsersVRviewModel::class.java)
-                val liveData: LiveData<MutableList<UserName?>> = b.getUserList()
-                liveData.observe(this, Observer {
+                val viewmodel : UserViewModel = UserViewModel(FirebaseDatabase.getInstance().reference.child("interests").child("Virtual Reality"))
+                val livedata = viewmodel.getUserList()
+                livedata.observe(this, Observer {
                     recycler_users_interest.adapter = IntAccUserRecyclerAdapter(it)
                 })
             }

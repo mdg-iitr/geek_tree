@@ -13,8 +13,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 
 class PinnedPostsViewModel: ViewModel() {
-    var firebaseuser = FirebaseAuth.getInstance().currentUser?.uid.toString()
-    var firebaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseuser).child("likedPosts")
+    val firebaseuser = FirebaseAuth.getInstance().currentUser?.uid.toString()
+    val firebaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseuser).child("likedPosts")
 
     val liveData = FirebaseLiveData(firebaseref as Query)
 

@@ -74,10 +74,10 @@ class Profile : Fragment() {
         val dialog = builder.create()
 
 
-        var storageref = FirebaseStorage.getInstance().reference.child("profilePictures").child(user?.username!!)
+        val storageref = FirebaseStorage.getInstance().reference.child("profilePictures").child(user?.username!!)
         if (!user?.dp?.isEmpty()!!) {
             storageref.downloadUrl.addOnSuccessListener {
-                var imgurl = it.toString()
+                val imgurl = it.toString()
                 Picasso.with(context).load(imgurl).into(profile_img)
             }
         }
@@ -141,7 +141,7 @@ class Profile : Fragment() {
         button_dp.setOnClickListener {
             dialog.show()
 
-            var uploadTask =
+            val uploadTask =
                 FirebaseStorage.getInstance().reference.child("profilePictures").child(user?.username!!).putFile(
                     resulturi!!
                 )
@@ -180,7 +180,7 @@ class Profile : Fragment() {
 
         recycler_profile_interests?.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         pLiveData.observe(this, Observer {
-            var intlist = it.interests
+            val intlist = it.interests
             recycler_profile_interests?.adapter = ProfileInterestAdapter(intlist)
         })
 

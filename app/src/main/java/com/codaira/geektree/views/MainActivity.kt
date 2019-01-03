@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         //for toolbar
         setSupportActionBar(toolbar)
 
-       var navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+       val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         val firebaseAuth = FirebaseAuth.getInstance()
 

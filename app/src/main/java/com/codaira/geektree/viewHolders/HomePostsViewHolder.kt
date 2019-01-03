@@ -19,8 +19,8 @@ import com.like.OnLikeListener
 class HomePostsViewHolder(val customView: View, var posts: Posts? = null) : RecyclerView.ViewHolder(customView) {
 
     fun bind(posts: Posts) {
-        var firebaseuser = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        var firebaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseuser).child("likedPosts")
+        val firebaseuser = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val firebaseref = FirebaseDatabase.getInstance().reference.child("User").child(firebaseuser).child("likedPosts")
 
         firebaseref.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {

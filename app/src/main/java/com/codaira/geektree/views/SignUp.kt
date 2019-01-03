@@ -91,7 +91,7 @@ class SignUp : Fragment() {
             val year: String = spinner_year_signup.selectedItem.toString()
             val name = edit_name_signup.text.toString()
             val email = edit_email_signup.text.toString()
-            var password = edit_password_signup.text.toString()
+            val password = edit_password_signup.text.toString()
             val fb = edit_fb_signup.text.toString()
             val linkedin = edit_linkedin_signup.text.toString()
             val username = edit_username_signup.text.toString()
@@ -143,9 +143,9 @@ class SignUp : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         val menuItem = menu.findItem(R.id.profile)
-        menuItem.setVisible(false)
+        menuItem.isVisible = false
         val menuI=menu.findItem(R.id.logout)
-        menuI.setVisible(false)
+        menuI.isVisible = false
     }
 
 
