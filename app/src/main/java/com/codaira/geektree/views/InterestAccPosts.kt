@@ -17,7 +17,6 @@ import com.codaira.geektree.adapters.AllPostAdapter
 import com.codaira.geektree.adapters.HomeAdapter
 import com.codaira.geektree.adapters.IntAccUserRecyclerAdapter
 import com.codaira.geektree.data.Posts
-import com.codaira.geektree.data.UserName
 import com.codaira.geektree.viewModels.*
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_interest_acc_posts.*
@@ -55,7 +54,7 @@ class InterestAccPosts : Fragment() {
         when (AllPostAdapter.queryCondition) {
 
             "Photography" -> {
-                val a = ViewModelProviders.of(this).get(PhotographyViewModel::class.java)
+                val a:InterestViewModel= InterestViewModel("Photography")
                 val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
@@ -67,7 +66,7 @@ class InterestAccPosts : Fragment() {
                 })
             }
             "Android Development" -> {
-                var a = ViewModelProviders.of(this).get(ADviewModel::class.java)
+                val a:InterestViewModel=InterestViewModel("Android Development")
                 val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
@@ -79,7 +78,7 @@ class InterestAccPosts : Fragment() {
                 })
             }
             "Web development" -> {
-                var a = ViewModelProviders.of(this).get(WebDviewModel::class.java)
+                val a:InterestViewModel=InterestViewModel("Web development")
                 val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
@@ -91,7 +90,7 @@ class InterestAccPosts : Fragment() {
                 })
             }
             "Designing" -> {
-                var a = ViewModelProviders.of(this).get(DesigningviewModel::class.java)
+                val a:InterestViewModel=InterestViewModel("Designing")
                 val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
@@ -103,7 +102,7 @@ class InterestAccPosts : Fragment() {
                 })
             }
             "Machine Learning" -> {
-                var a = ViewModelProviders.of(this).get(MLviewModel::class.java)
+                val a:InterestViewModel=InterestViewModel("Machine Learning")
                 val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
@@ -115,7 +114,7 @@ class InterestAccPosts : Fragment() {
                 })
             }
             "Virtual Reality" -> {
-                var a = ViewModelProviders.of(this).get(VRviewModel::class.java)
+                val a:InterestViewModel=InterestViewModel("Virtual Reality")
                 val postLiveData: LiveData<MutableList<Posts>> = a.getPostList()
                 postLiveData.observe(this, Observer {
                     recycler_intaccposts.adapter = HomeAdapter(it)
