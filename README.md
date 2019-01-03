@@ -64,3 +64,4 @@ For picasso, to load image into posts and profile image
 ### Acknowledgement
 
 * [Kaustubh Trivedi](github.com/codekaust)
+* Nikhil Agarawal
