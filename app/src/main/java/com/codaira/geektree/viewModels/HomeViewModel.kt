@@ -10,7 +10,7 @@ import androidx.arch.core.util.Function
 import com.google.firebase.database.*
 
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel() : ViewModel() {
     val databaseref = FirebaseDatabase.getInstance().reference.child("posts")
 
     val liveData = FirebaseLiveData(databaseref as Query)
@@ -32,7 +32,7 @@ private fun DataSnapshot.toPostList(): MutableList<Posts>? {
     val list = mutableListOf<Posts>()
     for (snapshot in this.children) {
         val post = snapshot.getValue(Posts::class.java)
-            if(!(user?.interests?.interests!!.minus(post!!.postInterestlist)== user?.interests?.interests!!)) {
+            if(user?.interests?.interests!!.minus(post!!.postInterestlist) != user?.interests?.interests!!) {
                 list.add(post)
 
         }

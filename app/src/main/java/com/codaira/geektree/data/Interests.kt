@@ -5,7 +5,7 @@ package com.codaira.geektree.data
 
 data class Interests(var interests: MutableList<String> = mutableListOf()){
     companion object {
-        var allInterestsArray = arrayListOf<String>(
+        var allInterestsArray = arrayListOf(
             "Photography",
             "Android Development",
             "Web development",

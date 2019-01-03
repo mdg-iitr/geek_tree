@@ -17,7 +17,7 @@ import com.codaira.geektree.viewModels.PinnedPostsViewModel
 import kotlinx.android.synthetic.main.fragment_destination_pinned_posts.*
 
 
-class destination_pinnedPosts : Fragment() {
+class PinnedPosts : Fragment() {
 
 
     override fun onCreateView(

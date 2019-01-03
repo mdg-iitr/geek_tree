@@ -1,3 +1,4 @@
+
 package com.codaira.geektree.views
 
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         //for toolbar
         setSupportActionBar(toolbar)
 
-       var navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         val firebaseAuth = FirebaseAuth.getInstance()
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             if (firebaseAuth.currentUser == null) {
 
                 navController.navigate(R.id.destination_login)
-                bottom_nav.visibility = View.INVISIBLE
+                bottom_nav.visibility = View.GONE
 
             } else {
                 val intRef = FirebaseDatabase.getInstance().reference.child("User")
@@ -58,12 +59,12 @@ class MainActivity : AppCompatActivity() {
 
                             if (user?.interests?.interests == null) {
                                 navController.navigate(R.id.destination_interests)
-                                bottom_nav.visibility = View.INVISIBLE
+                                bottom_nav.visibility = View.GONE
 
                             }
                             else {
                                 navController.navigate(R.id.destination_emailVerification)
-                                bottom_nav.visibility = View.INVISIBLE
+                                bottom_nav.visibility = View.GONE
 
                             }
                         }
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.profile -> {
-           Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.destination_profile)
+                Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.destination_profile)
             }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
@@ -115,6 +116,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-
-

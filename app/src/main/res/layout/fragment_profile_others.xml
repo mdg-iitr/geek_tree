@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent" android:layout_height="match_parent"
+              tools:context=".views.ProfileOthers" android:orientation="vertical">
+
+    <ImageButton
+            app:srcCompat="@drawable/ic_baseline_person_24px"
+            android:layout_width="94dp"
+            android:layout_height="94dp" android:id="@+id/p_img"
+            android:layout_gravity="center_horizontal"/>
+    ]
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="38dp" android:id="@+id/text_name_p"
+            android:layout_gravity="center"
+            android:textSize="30sp" android:textStyle="bold"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textAllCaps="true"/>
+
+    <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/text_branch_p"
+            android:gravity="center_horizontal"
+            android:textSize="22sp" android:textStyle="bold"
+            android:textAlignment="center" android:hint="Branch"
+            android:textAllCaps="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/text_year_p"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:textAlignment="center" android:hint="Year" android:singleLine="false"
+            android:textAllCaps="false"/>
+
+    <TextView
+            android:text="Other Details"
+            android:layout_width="match_parent"
+            android:layout_height="68dp" android:id="@+id/textView" android:textStyle="bold" android:textSize="30sp"
+            android:textAlignment="center" android:textColor="@android:color/black"
+            android:textAllCaps="true" android:background="@color/colorPrimary" android:gravity="center_vertical"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:id="@+id/text_username_p"
+              android:textAppearance="@style/TextAppearance.AppCompat.Button"
+              android:textAlignment="center" android:textSize="22sp"
+              android:gravity="center_horizontal"
+              android:padding="4dp"
+              android:textAllCaps="false"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:padding="4dp"
+              android:id="@+id/text_email_p"
+              android:textAppearance="@style/TextAppearance.AppCompat.Button"
+              android:textAlignment="center" android:textSize="22sp"
+              android:gravity="center_horizontal"
+              android:textAllCaps="false"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text_number_p"
+              android:textAppearance="@style/TextAppearance.AppCompat.Button"
+              android:textAlignment="center" android:textSize="18sp"
+              android:padding="4dp"
+              android:layout_gravity="center_horizontal"
+              android:hint="Phone Number" android:textAllCaps="false"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text_linkedin_p"
+              android:textAppearance="@style/TextAppearance.AppCompat.Button"
+              android:layout_gravity="center_horizontal"
+              android:padding="4dp"
+              android:textSize="18sp"
+              android:textAlignment="center" android:hint="linked in link"
+              android:textAllCaps="false"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/text_fb_p"
+              android:textAppearance="@style/TextAppearance.AppCompat.Button"
+              android:textSize="18sp"
+              android:textAlignment="center"
+              android:padding="4dp"
+              android:layout_gravity="center_horizontal"
+              android:hint="facebook id link" android:textAllCaps="false"/>
+
+</LinearLayout>

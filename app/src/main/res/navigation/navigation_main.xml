@@ -29,22 +29,33 @@
     </fragment>
     <fragment android:id="@+id/destination_interests" android:name="com.codaira.geektree.views.InterestsFragment"
               android:label="Choose Your Interests" tools:layout="@layout/fragment_interests">
-        <action android:id="@+id/action_interests_to_homeScreen" app:destination="@id/destination_home"/>
+        <action android:id="@+id/action_destination_interests_to_destination_emailVerification"
+                app:destination="@id/destination_emailVerification"/>
     </fragment>
     <fragment android:id="@+id/destination_profile" android:name="com.codaira.geektree.views.Profile"
               android:label="Profile" tools:layout="@layout/fragment_destination_profile"/>
     <fragment android:id="@+id/destination_addPost" android:name="com.codaira.geektree.views.AddPostFragment"
               android:label="Add Post" tools:layout="@layout/fragment_destination_add_post"/>
-    <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.views.destination_pinnedPosts"
+    <fragment android:id="@+id/destination_pinnedPosts" android:name="com.codaira.geektree.views.PinnedPosts"
               android:label="Pinned Posts"
               tools:layout="@layout/fragment_destination_pinned_posts"/>
     <fragment android:id="@+id/destination_all_posts" android:name="com.codaira.geektree.views.AllPosts"
               android:label="Select An Interest"
-              tools:layout="@layout/fragment_all_posts"/>
+              tools:layout="@layout/fragment_all_posts">
+        <action android:id="@+id/action_destination_all_posts_to_destination_interestAccPosts"
+                app:destination="@id/destination_interestAccPosts"/>
+        <action android:id="@+id/action_destination_all_posts_to_destination_profileOthers"
+                app:destination="@id/destination_profileOthers"/>
+    </fragment>
     <fragment android:name="com.codaira.geektree.views.InterestAccPosts"
               android:label="Posts" tools:layout="@layout/fragment_interest_acc_posts"
               android:id="@+id/destination_interestAccPosts"/>
     <fragment android:id="@+id/destination_emailVerification"
               android:name="com.codaira.geektree.views.EmailVerification"
-              android:label="Verify YourEmailId" tools:layout="@layout/fragment_email_verification"/>
+              android:label="Verify YourEmailId" tools:layout="@layout/fragment_email_verification">
+        <action android:id="@+id/action_destination_emailVerification_to_destination_home"
+                app:destination="@id/destination_home"/>
+    </fragment>
+    <fragment android:id="@+id/destination_profileOthers" android:name="com.codaira.geektree.views.ProfileOthers"
+              android:label="Profile" tools:layout="@layout/fragment_profile_others"/>
 </navigation>
