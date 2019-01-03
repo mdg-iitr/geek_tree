@@ -5,8 +5,11 @@
 Geek-Tree is a project under Winter of Code, a month long programming project aimed to bring more students into open source development. It is organised each year by MDG and SDS labs of IIT Roorkee.  
 ### Features
 ---
-Users can sign up into this app and specify their fields of interests, which they can change at a later stage as well. Based on their selected fields, they'll be shown posts on their *home screen*. Users can star the posts they like, and view them later under *pinned posts* as well. The app also allows users to add posts, and select the interests under which they want the post to be visible.  
-A separate fragment, showing all the interests is also available, through which a user can view posts according to interests. He can also view the profiles of users who follow an interest.
+* Users can sign up into this app and specify their fields of interests, which they can change at a later stage as well. Based on their selected fields, they'll be shown posts on their *home screen*. 
+* Users can star the posts they like, and view them later under *pinned posts* as well.
+* The app also allows users to add posts, and select the interests under which they want the post to be visible.  
+* A separate fragment, showing all the interests is also available, through which a user can view posts according to interests. 
+* User can also view the profiles of users who follow an interest.
 
 ### Development Environment
 ---
@@ -63,5 +66,5 @@ For picasso, to load image into posts and profile image
 
 ### Acknowledgement
 
-* [Kaustubh Trivedi](github.com/codekaust)
+* [Kaustubh Trivedi](https://github.com/codekaust)
 * Nikhil Agarawal
